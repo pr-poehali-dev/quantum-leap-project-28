@@ -151,7 +151,7 @@ export function HeroSection() {
         >
           <div className="bg-secondary/40 border border-border rounded-3xl p-4 relative overflow-hidden">
             <div className="flex items-center justify-between mb-4 px-2">
-              <span className="text-sm font-semibold text-foreground">Входящие лиды</span>
+              <span className="text-sm font-semibold text-foreground">Клиенты под ваш запрос</span>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 Обновляется в реальном времени
