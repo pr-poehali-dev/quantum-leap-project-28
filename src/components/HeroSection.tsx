@@ -42,14 +42,13 @@ const leads = [
   },
 ]
 
-function LeadCard({ lead, index }: { lead: typeof leads[0]; index: number }) {
+function LeadCard({ lead }: { lead: typeof leads[0] }) {
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -30, scale: 0.95 }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -16 }}
+      transition={{ duration: 0.4 }}
       className="bg-card border border-border rounded-2xl p-4 shadow-sm"
     >
       <div className="flex items-center justify-between mb-3">
@@ -69,17 +68,20 @@ function LeadCard({ lead, index }: { lead: typeof leads[0]; index: number }) {
 
 export function HeroSection() {
   const [visibleLeads, setVisibleLeads] = useState(leads.slice(0, 3))
-  const [counter, setCounter] = useState(0)
+  const tickRef = { current: 0 }
 
   useEffect(() => {
+    tickRef.current = 0
     const interval = setInterval(() => {
-      setCounter((c) => c + 1)
+      tickRef.current += 1
+      const slotToReplace = tickRef.current % 3
+      const newLeadIdx = (3 + tickRef.current) % leads.length
       setVisibleLeads((prev) => {
-        const nextIndex = (leads.indexOf(prev[prev.length - 1]) + 1) % leads.length
-        const newLead = leads[nextIndex]
-        return [newLead, ...prev.slice(0, 2)]
+        const updated = [...prev]
+        updated[slotToReplace] = leads[newLeadIdx]
+        return updated
       })
-    }, 2400)
+    }, 3500)
     return () => clearInterval(interval)
   }, [])
 
@@ -156,12 +158,12 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="space-y-3 min-h-[280px]">
-              <AnimatePresence mode="popLayout">
-                {visibleLeads.map((lead, i) => (
-                  <LeadCard key={`${lead.tag}-${lead.phone}-${counter}-${i}`} lead={lead} index={i} />
-                ))}
-              </AnimatePresence>
+            <div className="space-y-3">
+              {visibleLeads.map((lead, i) => (
+                <AnimatePresence key={i} mode="wait">
+                  <LeadCard key={`${lead.phone}-${lead.tag}`} lead={lead} />
+                </AnimatePresence>
+              ))}
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/60 to-transparent rounded-b-3xl pointer-events-none" />
