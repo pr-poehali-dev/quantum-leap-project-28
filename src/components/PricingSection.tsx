@@ -6,62 +6,62 @@ import { ShinyButton } from "@/components/ui/shiny-button"
 const pricingTiers = [
   {
     name: "Старт",
-    price: "2 900 ₽",
-    period: "/мес",
-    description: "Идеально для индивидуальных пользователей и небольших команд",
+    price: "от 1 500 ₽",
+    period: "/лид",
+    description: "Для компаний, которые хотят протестировать канал и оценить качество лидов",
     features: [
-      "До 5 участников",
-      "10 ГБ хранилища",
-      "Базовая аналитика",
-      "Поддержка по email",
-      "Основные функции",
-      "Мобильное приложение",
+      "От 20 лидов в месяц",
+      "Одна ниша на выбор",
+      "Прогноз перед запуском",
+      "Старт через 24 часа",
+      "Замена нецелевых лидов",
+      "Персональный менеджер",
     ],
-    cta: "Попробовать бесплатно",
+    cta: "Получить лиды",
     popular: false,
   },
   {
-    name: "Про",
-    price: "9 900 ₽",
-    period: "/мес",
-    description: "Для растущих команд с потребностью в расширенных функциях",
+    name: "Рост",
+    price: "от 1 200 ₽",
+    period: "/лид",
+    description: "Для активных продаж с постоянным потоком тёплых клиентов",
     features: [
-      "До 25 участников",
-      "100 ГБ хранилища",
-      "Расширенная аналитика",
-      "Приоритетная поддержка",
-      "Все функции",
-      "Доступ к API",
-      "Кастомные интеграции",
-      "Расширенная безопасность",
+      "От 50 лидов в месяц",
+      "До двух ниш одновременно",
+      "Прогноз и план продаж",
+      "Старт через 24 часа",
+      "Замена нецелевых лидов",
+      "Персональный менеджер",
+      "Еженедельные отчёты",
+      "Оптимизация кампаний",
     ],
-    cta: "Попробовать бесплатно",
+    cta: "Получить лиды",
     popular: true,
   },
   {
-    name: "Бизнес",
+    name: "Масштаб",
     price: "По запросу",
     period: "",
-    description: "Для крупных организаций с индивидуальными требованиями",
+    description: "Для крупных отделов продаж с потребностью от 100+ лидов в месяц",
     features: [
-      "Неограниченно участников",
-      "Безлимитное хранилище",
-      "Кастомная аналитика",
-      "Поддержка 24/7",
-      "Все функции",
-      "Кастомный API",
-      "White-label",
-      "Гарантия SLA",
-      "Персональный менеджер",
+      "От 100 лидов в месяц",
+      "Любые ниши",
+      "Индивидуальный прогноз",
+      "Старт через 24 часа",
+      "Замена нецелевых лидов",
+      "Выделенный менеджер",
+      "Ежедневные отчёты",
+      "Приоритетная поддержка",
+      "Гарантия объёма",
     ],
-    cta: "Связаться с нами",
+    cta: "Обсудить условия",
     popular: false,
   },
 ]
 
 export function PricingSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden" id="pricing">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export function PricingSection() {
         >
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Простые и прозрачные тарифы</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Выберите идеальный план для вашей команды. Все тарифы включают 14 дней бесплатно.
+            Платите за лиды, а не за «охват» и «показы». Чем больше объём — тем ниже цена за лид.
           </p>
         </motion.div>
 
@@ -104,9 +104,9 @@ export function PricingSection() {
                 </div>
 
                 <div className="mb-6">
-                  <div className="flex items-baseline">
-                    <span className="text-5xl font-bold">{tier.price}</span>
-                    {tier.period && <span className="text-muted-foreground ml-2">{tier.period}</span>}
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold">{tier.price}</span>
+                    {tier.period && <span className="text-muted-foreground">{tier.period}</span>}
                   </div>
                 </div>
 

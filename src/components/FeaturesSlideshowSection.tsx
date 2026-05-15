@@ -5,29 +5,30 @@ import { Button } from "@/components/ui/button"
 const slides = [
   {
     id: 1,
-    title: "Поставщики",
+    title: "Частные инвесторы",
     description:
-      "Получайте оплату сразу, предоставьте клиентам гибкие платежи и оставьте заботу о сборе платежей нам. Партнерский канал одобрен.",
+      "Привлекаем инвесторов с конкретными запросами: от 500 тыс. до 10+ млн рублей. Помогли клиентам привлечь более 3.5 млрд рублей частных вложений в бизнес, маркетплейсы, недвижимость и другие проекты.",
     image: "/placeholder.svg?height=400&width=600",
   },
   {
     id: 2,
-    title: "Реселлеры",
-    description: "Сократите закрытие сделок с недель до минут благодаря простому финансированию и быстрым выплатам.",
+    title: "Франшизы",
+    description:
+      "Находим покупателей франшиз, которые уже готовы к сделке. За 7 лет помогли продать более 700 франшиз в сферах общепита, услуг, медицины и розничной торговли.",
     image: "/placeholder.svg?height=400&width=600",
   },
   {
     id: 3,
-    title: "Покупатели",
+    title: "Недвижимость",
     description:
-      "Дайте клиентам доступ к технологиям и услугам, которые им нужны для успеха, с гибкими вариантами оплаты.",
+      "Генерируем заявки на покупку квартир в новостройках. Работаем с застройщиками и агентствами — помогли продать квартиры более чем в 100 жилых комплексах по всей России.",
     image: "/placeholder.svg?height=400&width=600",
   },
   {
     id: 4,
-    title: "Бизнес-решения",
+    title: "Другие ниши",
     description:
-      "Масштабируйте бизнес с решениями корпоративного уровня, индивидуальными условиями и поддержкой для крупных сделок.",
+      "Готовы взяться и за другие направления: B2B-услуги, онлайн-образование, медицина. Анализируем нишу, определяем лучший канал и запускаем поток клиентов под ваш продукт.",
     image: "/placeholder.svg?height=400&width=600",
   },
 ]
@@ -43,7 +44,6 @@ export function FeaturesSlideshowSection() {
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
-  // Calculate which slides to show (current + next 1 or 2 depending on screen size)
   const getVisibleSlides = () => {
     const visible = []
     for (let i = 0; i < 3; i++) {
@@ -57,7 +57,7 @@ export function FeaturesSlideshowSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-start justify-between mb-12">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-balance max-w-2xl">
-            Выигрыш для бизнеса, партнеров и клиентов
+            Три ниши — один поставщик лидов
           </h2>
           <div className="flex gap-2">
             <Button
@@ -97,7 +97,6 @@ export function FeaturesSlideshowSection() {
           </div>
         </div>
 
-        {/* Slide indicators */}
         <div className="flex justify-center gap-2 mt-8">
           {slides.map((_, idx) => (
             <button

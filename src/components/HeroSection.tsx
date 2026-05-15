@@ -1,18 +1,97 @@
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { ArrowRight } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+
+const leads = [
+  {
+    tag: "Частный инвестор",
+    phone: "+7 (912) ••• ••-••",
+    request: "Готов инвестировать от 1 млн рублей в ближайшие 30 дней в магазины на маркетплейсах, хочет изучить предложение проекта",
+    color: "bg-violet-100 text-violet-700",
+  },
+  {
+    tag: "Покупатель франшизы",
+    phone: "+7 (926) ••• ••-••",
+    request: "Ищет франшизу в сфере общепита, бюджет 2–3 млн рублей, рассматривает несколько городов присутствия",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    tag: "Покупатель недвижимости",
+    phone: "+7 (963) ••• ••-••",
+    request: "Хочет приобрести квартиру в новостройке, бюджет до 8 млн рублей, рассматривает ипотеку с первым взносом",
+    color: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    tag: "Частный инвестор",
+    phone: "+7 (905) ••• ••-••",
+    request: "Интересует пассивный доход, готов вложить от 500 тыс. рублей в стабильный бизнес с подтверждённой выручкой",
+    color: "bg-violet-100 text-violet-700",
+  },
+  {
+    tag: "Покупатель франшизы",
+    phone: "+7 (985) ••• ••-••",
+    request: "Рассматривает б'ьюти-франшизу или медицину, предпочтителен формат с обучением и поддержкой от франчайзера",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    tag: "Покупатель недвижимости",
+    phone: "+7 (977) ••• ••-••",
+    request: "Семья из 3 человек, ищет двушку в Подмосковье, бюджет 6–7 млн рублей, хочет получить 3–4 варианта",
+    color: "bg-emerald-100 text-emerald-700",
+  },
+]
+
+function LeadCard({ lead, index }: { lead: typeof leads[0]; index: number }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -30, scale: 0.95 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="bg-card border border-border rounded-2xl p-4 shadow-sm"
+    >
+      <div className="flex items-center justify-between mb-3">
+        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${lead.color}`}>
+          {lead.tag}
+        </span>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-xs text-muted-foreground">Новый лид</span>
+        </div>
+      </div>
+      <p className="text-sm font-mono font-semibold mb-2">{lead.phone}</p>
+      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{lead.request}</p>
+    </motion.div>
+  )
+}
 
 export function HeroSection() {
+  const [visibleLeads, setVisibleLeads] = useState(leads.slice(0, 3))
+  const [counter, setCounter] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((c) => c + 1)
+      setVisibleLeads((prev) => {
+        const nextIndex = (leads.indexOf(prev[prev.length - 1]) + 1) % leads.length
+        const newLead = leads[nextIndex]
+        return [newLead, ...prev.slice(0, 2)]
+      })
+    }, 2400)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 overflow-hidden">
-      {/* Grid Background with Alpha Mask */}
       <div className="absolute inset-0 -z-10">
         <div
-          className="absolute inset-0 opacity-50"
+          className="absolute inset-0 opacity-40"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgb(59 130 246 / 0.15) 1px, transparent 1px),
-              linear-gradient(to bottom, rgb(59 130 246 / 0.15) 1px, transparent 1px)
+              linear-gradient(to right, rgb(57 42 231 / 0.12) 1px, transparent 1px),
+              linear-gradient(to bottom, rgb(57 42 231 / 0.12) 1px, transparent 1px)
             `,
             backgroundSize: "40px 40px",
             maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%)",
@@ -22,105 +101,70 @@ export function HeroSection() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* Left Column - Content */}
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Работаем с 2018 года · 250+ клиентов
+          </div>
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6 font-display">
-            Быстрый путь к финансированию SaaS и оборудования
+            До 120 готовых клиентов уже через 24 часа
           </h1>
 
           <p className="text-lg text-muted-foreground text-balance mb-8 leading-relaxed max-w-xl">
-            Выберите LaunchPad как финансового партнера, чтобы закрывать сделки быстрее и увеличить доход. Одобряйте
-            клиентов, настраивайте предложения и выигрывайте сделки за минуты.
+            Мы генерируем целевые лиды для частных инвесторов, продажи франшиз и недвижимости. Гарантия качества — заменяем нецелевые обращения бесплатно.
           </p>
 
-          <ShinyButton className="text-base px-8">
-            Записаться на звонок
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </ShinyButton>
+          <div className="flex flex-wrap gap-3">
+            <ShinyButton className="text-base px-8">
+              Получить лиды
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </ShinyButton>
+            <ShinyButton variant="secondary" className="text-base px-8">
+              Узнать стоимость
+            </ShinyButton>
+          </div>
+
+          <div className="flex items-center gap-8 mt-10 pt-8 border-t border-border">
+            <div>
+              <p className="text-2xl font-bold font-display">3.5 млрд ₽</p>
+              <p className="text-sm text-muted-foreground">привлечено инвестиций</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold font-display">700+</p>
+              <p className="text-sm text-muted-foreground">продано франшиз</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold font-display">100+</p>
+              <p className="text-sm text-muted-foreground">новостроек</p>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Right Column - Chat Interface Mockup */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          <div className="space-y-4">
-            {/* Buyer Message */}
-            <div className="flex flex-col items-end gap-2">
-              <span className="text-sm text-muted-foreground">Клиент</span>
-              <div className="bg-card border border-border rounded-2xl px-6 py-4 max-w-md shadow-sm">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-4 h-4 text-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-foreground">Привет, можно платить помесячно?</p>
-                </div>
+          <div className="bg-secondary/40 border border-border rounded-3xl p-4 relative overflow-hidden">
+            <div className="flex items-center justify-between mb-4 px-2">
+              <span className="text-sm font-semibold text-foreground">Входящие лиды</span>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                Обновляется в реальном времени
               </div>
             </div>
 
-            {/* Vendor Message */}
-            <div className="flex flex-col items-end gap-2">
-              <span className="text-sm text-muted-foreground">Продавец</span>
-              <div className="bg-primary text-primary-foreground rounded-2xl px-6 py-4 max-w-md shadow-sm">
-                <p className="text-sm">Конечно, вот предложение: launchpad.ru/73d6</p>
-              </div>
+            <div className="space-y-3 min-h-[280px]">
+              <AnimatePresence mode="popLayout">
+                {visibleLeads.map((lead, i) => (
+                  <LeadCard key={`${lead.tag}-${lead.phone}-${counter}-${i}`} lead={lead} index={i} />
+                ))}
+              </AnimatePresence>
             </div>
 
-            {/* LaunchPad Message 1 */}
-            <div className="flex flex-col items-end gap-2">
-              <span className="text-sm text-muted-foreground">LaunchPad</span>
-              <div className="bg-card border border-border rounded-2xl px-6 py-4 max-w-md shadow-sm">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-4 h-4 text-accent-foreground"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-foreground">ИИ-каталог принял предложение</p>
-                </div>
-              </div>
-            </div>
-
-            {/* LaunchPad Message 2 */}
-            <div className="flex flex-col items-end gap-2">
-              <span className="text-sm text-muted-foreground">LaunchPad</span>
-              <div className="bg-card border border-border rounded-2xl px-6 py-4 max-w-md shadow-sm">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-4 h-4 text-accent-foreground"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-foreground">ИИ-каталог создал ссылку на оплату</p>
-                </div>
-              </div>
-            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/60 to-transparent rounded-b-3xl pointer-events-none" />
           </div>
         </motion.div>
       </div>

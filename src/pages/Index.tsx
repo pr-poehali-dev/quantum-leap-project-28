@@ -26,27 +26,27 @@ export default function Index() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold mb-4">LaunchPad</h3>
+              <h3 className="font-bold mb-4 text-lg font-display">Вам Лям!</h3>
               <p className="text-sm text-muted-foreground">
-                Строим будущее продуктивности с помощью ИИ-инструментов.
+                Генерируем целевых клиентов для инвестиционных проектов, франшиз и недвижимости с 2018 года.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Продукт</h4>
+              <h4 className="font-semibold mb-4">Направления</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Возможности
+                    Частные инвестиции
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Тарифы
+                    Франшизы
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Безопасность
+                    Недвижимость
                   </a>
                 </li>
               </ul>
@@ -55,45 +55,45 @@ export default function Index() {
               <h4 className="font-semibold mb-4">Компания</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    О нас
+                  <a href="#features" className="hover:text-foreground transition-colors">
+                    Возможности
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Блог
+                  <a href="#pricing" className="hover:text-foreground transition-colors">
+                    Тарифы
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Вакансии
+                  <a href="#how" className="hover:text-foreground transition-colors">
+                    Как работает
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Документы</h4>
+              <h4 className="font-semibold mb-4">Контакты</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Конфиденциальность
+                    Написать нам
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Условия
+                    Политика конфиденциальности
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-foreground transition-colors">
-                    Контакты
+                    Договор оферты
                   </a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            &copy; 2025 LaunchPad. Все права защищены.
+            &copy; 2018–2026 «Вам Лям!». Все права защищены.
           </div>
         </div>
       </footer>

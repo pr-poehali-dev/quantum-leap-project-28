@@ -3,58 +3,58 @@ import { TestimonialsColumn } from "@/components/ui/testimonials-column"
 
 const testimonials = [
   {
-    text: "Платформа произвела революцию в наших операциях, оптимизировала рабочие процессы и повысила продуктивность. Интуитивный интерфейс поддерживает эффективность команды.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    name: "Анна Петрова",
-    role: "Директор по операциям",
+    text: "Получили первые лиды уже на следующий день после запуска. За месяц привлекли 4 инвесторов на общую сумму 18 млн рублей. Рекомендую всем, кто работает с частными вложениями.",
+    image: "https://randomuser.me/api/portraits/men/11.jpg",
+    name: "Алексей Громов",
+    role: "Управляющий инвестиционного клуба",
   },
   {
-    text: "Внедрение прошло гладко, а результаты были мгновенными. Команда быстро адаптировалась благодаря удобному дизайну.",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-    name: "Михаил Родригес",
-    role: "IT-менеджер",
+    text: "Работаем с «Вам Лям!» уже второй год. Качество лидов на уровне — нецелевые единицы, и их сразу меняют без лишних вопросов. Это ценно, когда важен результат, а не процесс.",
+    image: "https://randomuser.me/api/portraits/women/22.jpg",
+    name: "Марина Соловьёва",
+    role: "Руководитель отдела продаж франшиз",
   },
   {
-    text: "Команда поддержки великолепна. Они сопровождали нас на каждом этапе и продолжают оказывать исключительную помощь.",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    name: "Елена Васильева",
-    role: "Руководитель успеха клиентов",
+    text: "Продаём квартиры в трёх жилых комплексах. Раньше тратили половину бюджета впустую. С «Вам Лям!» стоимость сделки упала вдвое, а поток клиентов стал предсказуемым.",
+    image: "https://randomuser.me/api/portraits/men/33.jpg",
+    name: "Илья Захаров",
+    role: "Коммерческий директор застройщика",
   },
   {
-    text: "Это решение изменило то, как мы работаем. Бесшовная интеграция и мощные функции превзошли наши ожидания.",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    name: "Дмитрий Ким",
+    text: "Нужен был быстрый старт для продажи франшизы кофейни. Через 24 часа уже разговаривал с потенциальными партнёрами. За 2 месяца продали 6 франшиз в разных городах.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Светлана Орлова",
+    role: "Владелица сети кофеен",
+  },
+  {
+    text: "Прогноз, который они сделали перед запуском, оказался точным — разница с фактом не больше 10%. Это помогает планировать найм и бюджеты заранее.",
+    image: "https://randomuser.me/api/portraits/men/55.jpg",
+    name: "Роман Беляев",
     role: "Генеральный директор",
   },
   {
-    text: "Надежные функции и отзывчивая поддержка сделали наш рабочий процесс значительно более эффективным и упорядоченным.",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    name: "Юлия Мартинес",
-    role: "Проект-менеджер",
-  },
-  {
-    text: "Внедрение превзошло ожидания. Оно оптимизировало процессы и значительно улучшило общую эффективность бизнеса.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-    name: "Алиса Фостер",
-    role: "Бизнес-аналитик",
-  },
-  {
-    text: "Удобный дизайн и мощные возможности изменили то, как наша команда сотрудничает и достигает результатов.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
-    name: "Артем Волков",
+    text: "Обращались к трём подрядчикам по лидам. «Вам Лям!» — единственные, кто дал гарантию замены и выполнил обещание. Уже год сотрудничаем без нареканий.",
+    image: "https://randomuser.me/api/portraits/women/66.jpg",
+    name: "Ольга Лебедева",
     role: "Директор по маркетингу",
   },
   {
-    text: "Они предоставили решение, которое действительно поняло наши потребности и улучшило работу сверх того, что мы могли представить.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
-    name: "Рита Томпсон",
-    role: "Менеджер по продажам",
+    text: "Сфера частных инвестиций непростая — клиент должен доверять. Лиды от «Вам Лям!» уже тёплые: они понимают продукт и ждут звонка. Конверсия удивила.",
+    image: "https://randomuser.me/api/portraits/men/77.jpg",
+    name: "Виктор Сидоров",
+    role: "Финансовый советник",
   },
   {
-    text: "Наша продуктивность и эффективность резко возросли. Эта платформа стала незаменимой для повседневной работы.",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    name: "Даниил Парк",
-    role: "Операционный менеджер",
+    text: "Запустили нишу недвижимости в новом городе. Боялись, что лиды будут слабыми. Но за первый месяц получили 47 заявок, из которых 5 дошли до сделки.",
+    image: "https://randomuser.me/api/portraits/women/88.jpg",
+    name: "Наталья Фёдорова",
+    role: "Руководитель агентства недвижимости",
+  },
+  {
+    text: "Как человек, который привык считать деньги, скажу честно: ROI с «Вам Лям!» самый высокий из всех каналов, что мы тестировали. Ребята знают своё дело.",
+    image: "https://randomuser.me/api/portraits/men/99.jpg",
+    name: "Дмитрий Новиков",
+    role: "Предприниматель, серийный инвестор",
   },
 ]
 
@@ -74,13 +74,13 @@ export function TestimonialsSection() {
           className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
         >
           <div className="flex justify-center">
-            <div className="border border-border py-1 px-4 rounded-lg text-sm text-muted-foreground">Отзывы</div>
+            <div className="border border-border py-1 px-4 rounded-lg text-sm text-muted-foreground">Отзывы клиентов</div>
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mt-5 text-center">
-            Что говорят клиенты
+            Что говорят наши клиенты
           </h2>
-          <p className="text-center mt-5 text-muted-foreground">Узнайте, что наши клиенты говорят о нас.</p>
+          <p className="text-center mt-5 text-muted-foreground">250+ компаний уже растут вместе с «Вам Лям!» с 2018 года.</p>
         </motion.div>
 
         <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">

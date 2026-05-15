@@ -13,7 +13,7 @@ export function Navigation() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
             <a href="/" className="text-xl font-bold font-display">
-              LaunchPad
+              Вам Лям!
             </a>
             <div className="hidden md:flex items-center gap-6">
               <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -22,16 +22,16 @@ export function Navigation() {
               <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Тарифы
               </a>
-              <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                О нас
+              <a href="#how" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Как работает
               </a>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <ShinyButton variant="secondary" className="hidden sm:inline-flex">
-              Войти
+              Написать нам
             </ShinyButton>
-            <ShinyButton>Начать</ShinyButton>
+            <ShinyButton>Получить лиды</ShinyButton>
           </div>
         </div>
       </div>
