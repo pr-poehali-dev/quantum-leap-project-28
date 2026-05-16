@@ -1,165 +1,119 @@
-import { motion } from "framer-motion"
-import { TrendingUp, Zap, CheckCircle2, Activity, ArrowUpRight, BarChart3, Phone } from "lucide-react"
-import { Card } from "@/components/ui/card"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import Icon from "@/components/ui/icon"
 
-export function HowItWorksSection() {
-  const steps = [
-    {
-      icon: Phone,
-      title: "Определяем нишу и канал",
-      description:
-        "Вы рассказываете о продукте и целевой аудитории. Мы анализируем нишу, подбираем наиболее эффективный канал привлечения и рассчитываем прогноз лидов для выполнения вашего плана продаж.",
-      visual: (
-        <div className="h-[280px] flex items-center justify-center">
-          <Card className="w-full p-6 bg-gradient-to-br from-primary/20 to-primary/5 border-primary/20">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <BarChart3 className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold">Прогноз по нише</p>
-                  <p className="text-sm text-muted-foreground">Частные инвестиции</p>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between p-3 bg-background/50 rounded-lg">
-                  <span className="text-sm">Лидов в месяц</span>
-                  <span className="text-sm font-medium text-primary">80–120 шт.</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-background/50 rounded-lg">
-                  <span className="text-sm">Цена лида</span>
-                  <span className="text-sm font-medium text-primary">от 1 500 ₽</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-background/50 rounded-lg">
-                  <span className="text-sm">Старт</span>
-                  <span className="text-sm font-medium text-green-500">24 часа</span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      ),
-    },
-    {
-      icon: TrendingUp,
-      title: "Запускаем генерацию",
-      description:
-        "Настраиваем рекламные кампании и начинаем привлечение целевой аудитории. Уже через 24 часа первые лиды поступают к вам: с именем, контактом и кратким описанием запроса клиента.",
-      visual: (
-        <div className="h-[280px] flex items-center justify-center">
-          <Card className="w-full p-6 bg-gradient-to-br from-primary/20 to-primary/5 border-primary/20">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <Activity className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-semibold">Лиды сегодня</span>
-                </div>
-                <div className="flex items-center gap-1 text-xs text-green-500">
-                  <ArrowUpRight className="w-3 h-3" />
-                  <span>Активно</span>
-                </div>
-              </div>
+const steps = [
+  {
+    icon: "Phone",
+    number: "01",
+    title: "Определяем нишу и канал",
+    description:
+      "Вы рассказываете о продукте и аудитории. Мы анализируем нишу, подбираем лучший канал и рассчитываем прогноз лидов.",
+    details: [
+      { label: "Лидов в месяц", value: "80–120 шт." },
+      { label: "Цена лида", value: "от 1 500 ₽" },
+      { label: "Старт", value: "24 часа" },
+    ],
+    color: "from-violet-500/20 to-violet-500/5",
+    iconBg: "bg-violet-500/15",
+    iconColor: "text-violet-500",
+    badge: "Шаг 1",
+  },
+  {
+    icon: "Rocket",
+    number: "02",
+    title: "Запускаем генерацию",
+    description:
+      "Настраиваем рекламные кампании. Уже через 24 часа первые лиды поступают к вам с именем, телефоном и кратким описанием запроса.",
+    details: [
+      { label: "Частный инвестор", value: "10:23" },
+      { label: "Покупатель франшизы", value: "11:47" },
+      { label: "Покупатель квартиры", value: "13:05" },
+    ],
+    color: "from-blue-500/20 to-blue-500/5",
+    iconBg: "bg-blue-500/15",
+    iconColor: "text-blue-500",
+    badge: "Шаг 2",
+  },
+  {
+    icon: "ShieldCheck",
+    number: "03",
+    title: "Гарантируем качество",
+    description:
+      "Каждый лид проходит проверку. Нецелевой — заменяем бесплатно. Вы платите только за реальные заявки.",
+    details: [
+      { label: "Целевые лиды", value: "92%" },
+      { label: "Дозвон с первого раза", value: "78%" },
+      { label: "Конверсия в сделку", value: "до 35%" },
+    ],
+    color: "from-emerald-500/20 to-emerald-500/5",
+    iconBg: "bg-emerald-500/15",
+    iconColor: "text-emerald-500",
+    badge: "Шаг 3",
+  },
+]
 
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
-                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium">Частный инвестор</p>
-                    <p className="text-xs text-muted-foreground">+7 (912) ••• ••-•• · 10:23</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
-                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium">Покупатель франшизы</p>
-                    <p className="text-xs text-muted-foreground">+7 (926) ••• ••-•• · 11:47</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
-                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium">Покупатель недвижимости</p>
-                    <p className="text-xs text-muted-foreground">+7 (963) ••• ••-•• · 13:05</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      ),
-    },
-    {
-      icon: Zap,
-      title: "Гарантируем качество",
-      description:
-        "Каждый лид проходит проверку на соответствие вашей аудитории. Если обращение оказалось нецелевым — мы заменяем его бесплатно. Вы платите только за результат.",
-      visual: (
-        <div className="h-[280px] flex items-center justify-center">
-          <Card className="w-full p-6 bg-gradient-to-br from-primary/20 to-primary/5 border-primary/20">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-semibold">Качество лидов</span>
-                </div>
-                <div className="flex items-center gap-1 text-xs text-green-500">
-                  <ArrowUpRight className="w-3 h-3" />
-                  <span>+18%</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Целевые лиды</span>
-                    <span className="font-semibold">92%</span>
-                  </div>
-                  <div className="h-2 bg-background/50 rounded-full overflow-hidden">
-                    <div className="h-full w-[92%] bg-primary rounded-full" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Дозвон с первого раза</span>
-                    <span className="font-semibold">78%</span>
-                  </div>
-                  <div className="h-2 bg-background/50 rounded-full overflow-hidden">
-                    <div className="h-full w-[78%] bg-primary rounded-full" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Конверсия в сделку</span>
-                    <span className="font-semibold">до 35%</span>
-                  </div>
-                  <div className="h-2 bg-background/50 rounded-full overflow-hidden">
-                    <div className="h-full w-[35%] bg-primary rounded-full" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-primary/10 grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-xs text-muted-foreground">Замена нецелевых</p>
-                  <p className="text-lg font-bold text-primary">Бесплатно</p>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Старт за</p>
-                  <p className="text-lg font-bold text-primary">24 часа</p>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      ),
-    },
-  ]
+function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section className="py-20 bg-background" id="how">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="relative group"
+    >
+      <div className={`relative rounded-2xl border border-border bg-gradient-to-br ${step.color} p-6 overflow-hidden h-full transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-xl group-hover:shadow-primary/5`}>
+        <div className="absolute top-4 right-4 text-6xl font-black text-foreground/4 font-display select-none">
+          {step.number}
+        </div>
+
+        <div className="flex items-start gap-4 mb-5">
+          <div className={`w-12 h-12 rounded-xl ${step.iconBg} flex items-center justify-center shrink-0`}>
+            <Icon name={step.icon} className={`w-6 h-6 ${step.iconColor}`} />
+          </div>
+          <div>
+            <span className="text-xs font-semibold text-muted-foreground tracking-wider uppercase">{step.badge}</span>
+            <h3 className="text-xl font-bold font-display mt-0.5">{step.title}</h3>
+          </div>
+        </div>
+
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5">{step.description}</p>
+
+        <div className="space-y-2">
+          {step.details.map((d, i) => (
+            <motion.div
+              key={d.label}
+              initial={{ opacity: 0, x: -10 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.4, delay: index * 0.15 + 0.3 + i * 0.08 }}
+              className="flex items-center justify-between bg-background/50 backdrop-blur-sm rounded-lg px-3 py-2"
+            >
+              <span className="text-xs text-muted-foreground">{d.label}</span>
+              <span className="text-xs font-semibold text-primary">{d.value}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+export function HowItWorksSection() {
+  const lineRef = useRef(null)
+  const lineInView = useInView(lineRef, { once: true, margin: "-100px" })
+
+  return (
+    <section className="py-20 sm:py-32 bg-secondary/20 relative overflow-hidden" id="how">
+      <div className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage: `radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, hsl(var(--primary) / 0.04) 0%, transparent 50%)`,
+        }}
+      />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -168,36 +122,61 @@ export function HowItWorksSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Простой процесс
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">Как это работает</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Три простых шага — и поток целевых клиентов уже идёт в ваш бизнес
+            Три шага — и поток целевых клиентов уже идёт в ваш бизнес
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {steps.map((step, index) => (
+        <div ref={lineRef} className="relative">
+          <div className="hidden lg:block absolute top-16 left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-px bg-border z-10">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col"
-            >
-              <div className="mb-6">{step.visual}</div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <step.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">Шаг {index + 1}</span>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold font-display mb-3">{step.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
-            </motion.div>
-          ))}
+              initial={{ scaleX: 0 }}
+              animate={lineInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
+              style={{ transformOrigin: "left" }}
+              className="h-full bg-gradient-to-r from-violet-500 via-blue-500 to-emerald-500"
+            />
+          </div>
+
+          <div className="hidden lg:flex absolute top-[52px] left-0 right-0 justify-between px-[calc(16.67%-4px)] z-20 pointer-events-none">
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0 }}
+                animate={lineInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.35 }}
+                className="w-3 h-3 rounded-full border-2 border-primary bg-background"
+              />
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {steps.map((step, index) => (
+              <StepCard key={step.title} step={step} index={index} />
+            ))}
+          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-14 text-center"
+        >
+          <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-2xl px-6 py-4">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-sm font-medium">
+              Среднее время от заявки до первого лида —{" "}
+              <span className="text-primary font-bold">24 часа</span>
+            </span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
