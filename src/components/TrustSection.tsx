@@ -1,93 +1,94 @@
 import { motion } from "framer-motion"
-import { ShieldCheck, Clock, RefreshCw, TrendingUp, Users, Calendar } from "lucide-react"
+import Icon from "@/components/ui/icon"
 
 const stats = [
-  { value: "250+", label: "бизнесов выросли с нашей помощью", icon: Users },
-  { value: "7 лет", label: "на рынке лидогенерации с 2018 года", icon: Calendar },
-  { value: "24 ч", label: "до первых лидов после запуска", icon: Clock },
-  { value: "до 120", label: "клиентов в сутки в активных кампаниях", icon: TrendingUp },
+  { icon: "Users", value: "250+", label: "компаний вырастили", description: "работаем с 2018 года" },
+  { icon: "Target", value: "50 000+", label: "лидов доставлено", description: "за всё время работы" },
+  { icon: "ShieldCheck", value: "97%", label: "довольных клиентов", description: "по итогам опросов" },
+  { icon: "Clock", value: "24 ч", label: "до первых лидов", description: "с момента запуска" },
 ]
 
 const advantages = [
   {
-    icon: ShieldCheck,
-    title: "Гарантия качества лидов",
-    description: "Каждый лид проходит верификацию на соответствие вашей целевой аудитории. Платите только за результат.",
+    icon: "FileCheck",
+    title: "Прогноз зафиксирован в договоре",
+    description: "Перед стартом согласовываем объём и стоимость лидов. Это письменное обязательство, а не обещание.",
   },
   {
-    icon: RefreshCw,
-    title: "Замена нецелевых — бесплатно",
-    description: "Если лид не соответствует согласованным критериям — заменяем без доплат и лишних вопросов.",
+    icon: "RefreshCw",
+    title: "Замена нецелевых лидов",
+    description: "Если лид не соответствует критериям — заменяем бесплатно. Без переговоров и дополнительных условий.",
   },
   {
-    icon: Clock,
-    title: "Старт через 24 часа",
-    description: "Без долгих согласований и месяцев раскачки. Настраиваем систему и передаём первые контакты уже на следующий день.",
+    icon: "LineChart",
+    title: "Прозрачная аналитика",
+    description: "Еженедельные отчёты с цифрами: сколько лидов, по какой цене, какая конверсия. Ничего лишнего.",
   },
   {
-    icon: TrendingUp,
-    title: "Прогноз под план продаж",
-    description: "Перед стартом считаем объём лидов, конверсию и стоимость привлечения под ваши цели. Не «запустим рекламу», а выполним план.",
+    icon: "Zap",
+    title: "Быстрый старт",
+    description: "Запуск за 1–2 дня. Первые лиды — уже через 24 часа после старта рекламной системы.",
   },
 ]
 
 export function TrustSection() {
   return (
-    <section className="py-20 sm:py-28" id="trust">
+    <section className="py-20 sm:py-28 bg-gray-50" id="trust">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
-            Почему нам доверяют
+          <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
+            О нас
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            Цифры и факты, а не слова
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Почему выбирают нас
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            За 7 лет мы помогли 250+ компаниям выстроить предсказуемый поток клиентов
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+            Восемь лет опыта, прозрачные условия и гарантия результата
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {stats.map((stat, i) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {stats.map((s, i) => (
             <motion.div
-              key={stat.value}
-              initial={{ opacity: 0, y: 20 }}
+              key={s.value}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-card border border-border rounded-2xl p-6 text-center"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="bg-white border border-gray-100 rounded-3xl p-6 text-center"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center mx-auto mb-4">
+                <Icon name={s.icon} className="w-5 h-5 text-[#392AE7]" />
               </div>
-              <p className="font-display text-4xl font-bold text-primary mb-1">{stat.value}</p>
-              <p className="text-sm text-muted-foreground leading-snug">{stat.label}</p>
+              <div className="font-display text-3xl font-bold text-gray-900 mb-1">{s.value}</div>
+              <div className="text-sm font-semibold text-gray-700 mb-0.5">{s.label}</div>
+              <div className="text-xs text-gray-400">{s.description}</div>
             </motion.div>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-4">
           {advantages.map((adv, i) => (
             <motion.div
               key={adv.title}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex gap-5 bg-card border border-border rounded-2xl p-6"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="bg-white border border-gray-100 rounded-3xl p-6 flex gap-4 items-start"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <adv.icon className="w-6 h-6 text-primary" />
+              <div className="w-10 h-10 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center shrink-0">
+                <Icon name={adv.icon} className="w-5 h-5 text-[#392AE7]" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold mb-2">{adv.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
+                <h3 className="font-semibold text-gray-900 mb-1">{adv.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{adv.description}</p>
               </div>
             </motion.div>
           ))}

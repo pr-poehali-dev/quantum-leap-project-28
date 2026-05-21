@@ -1,104 +1,102 @@
-import { motion } from "framer-motion"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ShinyButton } from "@/components/ui/shiny-button"
-import { ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 
 const faqs = [
   {
-    question: "Когда можно получить первые лиды?",
-    answer:
-      "Первые качественные лиды поступают уже через 24 часа после запуска кампании. Это одно из наших ключевых отличий — не нужно ждать недели «раскачки». Настройка, лендинг и аналитика готовятся параллельно с согласованием условий.",
+    question: "Как быстро начнут приходить лиды?",
+    answer: "Первые лиды начинают поступать уже через 24 часа после запуска рекламной системы. В среднем, мы запускаем кампании в течение 1–2 рабочих дней после подписания договора.",
   },
   {
-    question: "Сколько лидов вы можете давать?",
-    answer:
-      "В зависимости от ниши и выбранного канала — от 20 до 120+ лидов в сутки. Перед стартом мы рассчитываем прогноз по объёму именно под вашу нишу и план продаж. Указанные цифры фиксируются в договоре.",
+    question: "Что произойдёт, если лид окажется нецелевым?",
+    answer: "Мы бесплатно заменяем нецелевые лиды без каких-либо дополнительных условий или переговоров. Критерии целевого лида фиксируются в договоре до начала работы.",
   },
   {
-    question: "Как вы определяете канал продвижения?",
-    answer:
-      "На основе анализа ниши, конкурентной среды и вашей целевой аудитории. Мы не применяем один инструмент ко всем — подбираем канал с максимальной отдачей для конкретного бизнеса: таргет, контекст, нативная реклама, SEO-трафик или комбинация.",
+    question: "По каким каналам вы генерируете лиды?",
+    answer: "Мы используем контекстную рекламу (Яндекс.Директ), таргетированную рекламу в ВКонтакте и Telegram, нативные форматы, лид-формы и SEO-лиды. Конкретный канал выбирается под вашу нишу и цели.",
   },
   {
-    question: "Что считается нецелевым лидом?",
-    answer:
-      "Перед стартом мы вместе с вами согласовываем портрет целевого лида: бюджет, намерение, регион, другие параметры. Если полученный контакт не соответствует этим критериям — это нецелевой лид. Такие лиды мы заменяем бесплатно без дополнительных обсуждений.",
+    question: "Как происходит передача лидов?",
+    answer: "Каждый лид передаётся с именем, номером телефона и кратким описанием запроса. Мы настраиваем удобный формат: CRM-интеграция, таблица, Telegram-бот или email-уведомления.",
   },
   {
-    question: "Вы работаете только с инвестициями, франшизами и недвижимостью?",
-    answer:
-      "Нет. Эти три ниши — наша проверенная экспертиза с измеримыми результатами. Но мы работаем и с другими направлениями: EdTech, медицина, юридические услуги, страхование, B2B-сервисы. В таких случаях проводим анализ ниши и предлагаем индивидуальную стратегию.",
+    question: "Возможна ли оплата за результат?",
+    answer: "Да, мы работаем по модели cost-per-lead — вы платите за каждый квалифицированный лид. Стоимость и критерии качества фиксируются в договоре.",
   },
   {
-    question: "Как строится прогноз?",
-    answer:
-      "Мы анализируем нишу, объём поискового и рекламного спроса, конкуренцию и исторические данные по похожим проектам. На выходе — расчёт: сколько лидов можно получить, по какой цене и с какой конверсией. Прогноз согласовывается до старта и фиксируется письменно.",
-  },
-  {
-    question: "Сколько стоят ваши услуги?",
-    answer:
-      "Стоимость зависит от ниши, объёма и выбранного канала. Модель оплаты: за лид или абонентская. Чем выше объём — тем ниже цена за контакт. Точную стоимость рассчитываем после брифа и прогноза. Пройдите квиз — подготовим предварительный расчёт бесплатно.",
-  },
-  {
-    question: "Как быстро можно запустить проект?",
-    answer:
-      "Стандартный старт — 24–48 часов с момента согласования условий. Мы не тратим время на долгие согласования: быстро изучаем задачу, согласовываем критерии и запускаем. Первые лиды — уже на следующий день.",
+    question: "Работаете ли вы с моей нишей?",
+    answer: "Основные направления — недвижимость, франшизы и частные инвестиции. Но мы также работаем с B2B-услугами, медициной, образованием и другими нишами. Оставьте заявку, и мы скажем, возможно ли сотрудничество.",
   },
 ]
 
 export function FAQSection() {
+  const [open, setOpen] = useState<number | null>(0)
+
   return (
-    <section className="py-20 sm:py-28 bg-secondary/20" id="faq">
+    <section className="py-20 sm:py-28 bg-gray-50" id="faq">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:sticky lg:top-24"
+            className="text-center mb-14"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
+            <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
               FAQ
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Частые вопросы
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+              Часто задаваемые вопросы
             </h2>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Всё, что нужно знать о работе с «Вам Лям!» до принятия решения.
+            <p className="text-lg text-gray-500">
+              Отвечаем на самые популярные вопросы о работе с нами
             </p>
-            <ShinyButton
-              variant="secondary"
-              onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Задать свой вопрос
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </ShinyButton>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Accordion type="single" collapsible className="w-full space-y-3">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30"
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="bg-white border border-gray-100 rounded-3xl overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 p-6 text-left"
                 >
-                  <AccordionTrigger className="text-left font-display text-base font-semibold py-5 hover:no-underline">
+                  <span className={`font-semibold text-base transition-colors ${open === i ? "text-[#392AE7]" : "text-gray-900"}`}>
                     {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
+                  </span>
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                    open === i ? "bg-[#392AE7] rotate-180" : "bg-gray-100"
+                  }`}>
+                    <ChevronDown className={`w-4 h-4 ${open === i ? "text-white" : "text-gray-500"}`} />
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {open === i && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 text-sm text-gray-500 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

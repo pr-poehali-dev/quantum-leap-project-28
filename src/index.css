@@ -16,35 +16,36 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    --primary: 245 79% 53%;
+    /* #392AE7 → hsl(245, 79%, 53%) → точное значение: hsl(243, 78%, 54%) */
+    --primary: 243 78% 54%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
+    --secondary: 220 20% 97%;
     --secondary-foreground: 0 0% 13%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 35%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 0 0% 38%;
 
-    --accent: 245 79% 95%;
-    --accent-foreground: 245 79% 35%;
+    --accent: 243 78% 94%;
+    --accent-foreground: 243 78% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 84% 60%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 54%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 243 78% 54%;
 
-    --radius: 0.625rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 97%;
+    --sidebar-background: 220 20% 97%;
     --sidebar-foreground: 0 0% 9%;
-    --sidebar-primary: 245 79% 53%;
+    --sidebar-primary: 243 78% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent: 220 20% 97%;
     --sidebar-accent-foreground: 0 0% 13%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 245 79% 53%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 243 78% 54%;
   }
 
   .dark {

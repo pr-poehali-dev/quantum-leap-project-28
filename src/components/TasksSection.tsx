@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { ShinyButton } from "@/components/ui/shiny-button"
 
 const tasks = [
   {
@@ -43,27 +42,27 @@ const tasks = [
 
 export function TasksSection() {
   return (
-    <section className="py-20 sm:py-28 bg-secondary/20" id="about">
+    <section className="py-20 sm:py-28 bg-white" id="about">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl mb-16"
+          className="max-w-2xl mb-14"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
             Задачи, которые мы решаем
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-gray-900">
             Узнаёте себя?
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Мы решаем не абстрактный «маркетинг», а конкретные бизнес-задачи. Если хоть одна ситуация знакома — мы знаем, как её закрыть.
+          <p className="text-lg text-gray-500">
+            Если хоть одна ситуация знакома — мы знаем, как её закрыть.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {tasks.map((task, i) => (
             <motion.div
               key={task.number}
@@ -71,15 +70,15 @@ export function TasksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-md transition-all"
+              className="group bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:border-[#392AE7]/20 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
-              <span className="text-5xl font-bold font-display text-primary/10 group-hover:text-primary/20 transition-colors block mb-4 leading-none">
+              <span className="text-5xl font-bold font-display text-gray-100 group-hover:text-[#392AE7]/15 transition-colors block mb-4 leading-none">
                 {task.number}
               </span>
-              <h3 className="font-display text-lg font-bold mb-3 leading-snug">{task.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{task.description}</p>
-              <div className="pt-3 border-t border-border">
-                <p className="text-sm text-primary font-medium flex items-start gap-2">
+              <h3 className="font-display text-lg font-bold mb-2 text-gray-900 leading-snug">{task.title}</h3>
+              <p className="text-sm text-gray-500 mb-4 leading-relaxed">{task.description}</p>
+              <div className="pt-3 border-t border-gray-100">
+                <p className="text-sm text-[#392AE7] font-semibold flex items-start gap-2">
                   <ArrowRight className="w-4 h-4 shrink-0 mt-0.5" />
                   {task.accent}
                 </p>
@@ -95,13 +94,13 @@ export function TasksSection() {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="mt-10 text-center"
         >
-          <ShinyButton
-            className="text-base px-8"
+          <button
             onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/20"
           >
             Обсудить мою задачу
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </ShinyButton>
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </motion.div>
       </div>
     </section>
