@@ -31,7 +31,7 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-3xl text-slate-800 px-0">Получайте до 120 клиентов в сутки с гарантией качества и заменой не целевых</h1>
+            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-5xl">Генерируем клиентов о 120 потенциальных клиентов уже через 24 ча</h1>
 
             <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
               Генерируем целевые лиды в сфере недвижимости, франшиз и частных инвестиций. Первые клиенты — уже через 24 часа.
