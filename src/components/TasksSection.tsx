@@ -1,87 +1,108 @@
 import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+import { ShinyButton } from "@/components/ui/shiny-button"
 
 const tasks = [
   {
     number: "01",
-    title: "Нет стабильного потока клиентов",
-    description: "Заявки приходят нерегулярно — не можете планировать продажи и нагрузку на команду.",
-    result: "Обеспечиваем предсказуемый поток от 20 до 120+ лидов в месяц.",
+    title: "Нужен стабильный поток клиентов",
+    description: "Реклама не даёт предсказуемого результата. Лиды приходят то много, то вообще нет — план горит каждый месяц.",
+    accent: "Обеспечим стабильный поток от 20 до 120+ лидов в месяц под ваш план продаж.",
   },
   {
     number: "02",
-    title: "Много нецелевых обращений",
-    description: "Менеджеры тратят время на людей, которые не купят. Конверсия низкая, стоимость сделки растёт.",
-    result: "Гарантируем качество и заменяем нецелевые лиды бесплатно.",
+    title: "Лиды есть, но много нецелевых",
+    description: "Менеджеры тратят время на пустые разговоры. Стоимость привлечения реального клиента растёт, конверсия падает.",
+    accent: "Гарантируем качество и заменяем нецелевые обращения бесплатно.",
   },
   {
     number: "03",
-    title: "Непонятно, какой канал работает",
-    description: "Пробовали разные инструменты — результат непредсказуемый. Бюджет уходит, а системы нет.",
-    result: "Анализируем нишу и подбираем канал с максимальной отдачей для вас.",
+    title: "Не понимаете, какой канал даст результат",
+    description: "Пробовали контекст, таргет, SEO — что-то работало, что-то нет. Бюджет уходит, а системного результата нет.",
+    accent: "Анализируем нишу и подбираем наиболее эффективный канал именно для вас.",
   },
   {
     number: "04",
     title: "Нужно выполнить план в цифрах",
-    description: "Задача не «запустить рекламу», а закрыть конкретный план: N сделок, N млн выручки.",
-    result: "Считаем прогноз по объёму лидов и конверсии под ваш план продаж.",
+    description: "Задача — не «запустить рекламу», а закрыть конкретный план: N сделок, N млн выручки. Нужен подрядчик, который считает результат.",
+    accent: "Считаем прогноз по объёму лидов и конверсии под ваш план продаж.",
   },
   {
     number: "05",
-    title: "Нужен быстрый старт",
-    description: "Нет времени ждать 2–3 месяца. Нужны заявки, звонки и встречи здесь и сейчас.",
-    result: "Первые качественные лиды — уже через 24 часа после запуска.",
+    title: "Нужен быстрый старт без раскачки",
+    description: "Нет времени ждать 2–3 месяца, пока «заработает». Нужен результат быстро: заявки, звонки, встречи.",
+    accent: "Первые качественные лиды — уже через 24 часа после старта.",
   },
   {
     number: "06",
-    title: "Уперлись в потолок объёма",
-    description: "Текущий источник лидов не масштабируется. Нужно больше — без потери в качестве.",
-    result: "Масштабируем поток через мультиканальный подход.",
+    title: "Требуется масштабирование потока",
+    description: "Текущий источник лидов упёрся в потолок. Нужно больше — x2, x3 — не теряя в качестве и не перегружая отдел.",
+    accent: "Масштабируем без потери качества за счёт мультиканального подхода.",
   },
 ]
 
 export function TasksSection() {
   return (
-    <section className="py-20 sm:py-24 bg-secondary/30" id="about">
+    <section className="py-20 sm:py-28 bg-secondary/20" id="about">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl mb-16"
+        >
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
+            Задачи, которые мы решаем
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+            Узнаёте себя?
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Мы решаем не абстрактный «маркетинг», а конкретные бизнес-задачи. Если хоть одна ситуация знакома — мы знаем, как её закрыть.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {tasks.map((task, i) => (
+            <motion.div
+              key={task.number}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="group bg-card rounded-2xl border border-border p-6 hover:border-primary/40 hover:shadow-md transition-all"
+            >
+              <span className="text-5xl font-bold font-display text-primary/10 group-hover:text-primary/20 transition-colors block mb-4 leading-none">
+                {task.number}
+              </span>
+              <h3 className="font-display text-lg font-bold mb-3 leading-snug">{task.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{task.description}</p>
+              <div className="pt-3 border-t border-border">
+                <p className="text-sm text-primary font-medium flex items-start gap-2">
+                  <ArrowRight className="w-4 h-4 shrink-0 mt-0.5" />
+                  {task.accent}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          className="mb-12"
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-10 text-center"
         >
-          <div className="inline-flex items-center border border-border text-xs text-muted-foreground px-3 py-1 mb-4">
-            Задачи, которые мы решаем
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3">
-            Узнаёте себя?
-          </h2>
-          <p className="text-muted-foreground max-w-xl">
-            Работаем не с «рекламой», а с конкретными бизнес-задачами. Если хоть одна ситуация знакома — мы умеем её закрыть.
-          </p>
+          <ShinyButton
+            className="text-base px-8"
+            onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            Обсудить мою задачу
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </ShinyButton>
         </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-          {tasks.map((task, i) => (
-            <motion.div
-              key={task.number}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white p-6 hover:bg-accent/30 transition-colors group"
-            >
-              <span className="text-5xl font-bold font-display text-border group-hover:text-primary/15 transition-colors block mb-4 leading-none select-none">
-                {task.number}
-              </span>
-              <h3 className="font-display text-base font-bold mb-2">{task.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{task.description}</p>
-              <p className="text-sm font-medium text-primary border-t border-border pt-3">
-                → {task.result}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )

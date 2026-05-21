@@ -1,86 +1,101 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react"
+import { ChevronRight, ChevronLeft, CheckCircle2, Sparkles } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Icon from "@/components/ui/icon"
+
+type Option = { label: string; icon: string; value: string; desc?: string }
 
 type Step = {
   id: string
   question: string
   subtitle?: string
   type: "choice" | "contact"
-  options?: { label: string; icon: string; value: string; desc?: string }[]
+  options?: Option[]
 }
 
 const steps: Step[] = [
   {
     id: "niche",
-    question: "Какой продукт вы продаёте?",
-    subtitle: "Выберите ваше направление",
+    question: "Ваша ниша?",
+    subtitle: "Выберите направление, в котором работает ваш бизнес",
     type: "choice",
     options: [
       { label: "Частные инвестиции", icon: "Landmark", value: "investments", desc: "Привлечение инвесторов" },
       { label: "Франшизы", icon: "Store", value: "franchise", desc: "Продажа франшизы" },
-      { label: "Недвижимость", icon: "Building2", value: "realty", desc: "Новостройки, ЖК" },
-      { label: "Другое", icon: "Briefcase", value: "other", desc: "Иная ниша" },
+      { label: "Недвижимость", icon: "Building2", value: "realty", desc: "Новостройки, вторичка" },
+      { label: "Другое направление", icon: "Briefcase", value: "other", desc: "Иной вид бизнеса" },
+    ],
+  },
+  {
+    id: "goal",
+    question: "Какой результат хотите получить?",
+    subtitle: "Что для вас важнее всего на старте",
+    type: "choice",
+    options: [
+      { label: "Стабильный поток заявок", icon: "TrendingUp", value: "stable", desc: "Предсказуемый объём каждый месяц" },
+      { label: "Быстрый запуск за 24 ч", icon: "Zap", value: "fast", desc: "Первые лиды как можно скорее" },
+      { label: "Выполнить план продаж", icon: "BarChart3", value: "plan", desc: "Конкретные цифры по сделкам" },
+      { label: "Масштабировать поток", icon: "Rocket", value: "scale", desc: "Увеличить объём лидов" },
     ],
   },
   {
     id: "volume",
-    question: "Сколько лидов нужно в месяц?",
-    subtitle: "Укажите желаемый объём",
+    question: "Сколько заявок нужно в месяц?",
+    subtitle: "Укажите желаемый объём — сделаем прогноз",
     type: "choice",
     options: [
-      { label: "20–50 лидов", icon: "Zap", value: "20", desc: "Тест канала" },
-      { label: "50–100 лидов", icon: "TrendingUp", value: "50", desc: "Активные продажи" },
-      { label: "100–200 лидов", icon: "Rocket", value: "100", desc: "Системный рост" },
-      { label: "Более 200", icon: "BarChart3", value: "200", desc: "Масштаб" },
+      { label: "До 50 заявок", icon: "Zap", value: "50", desc: "Старт и тест канала" },
+      { label: "50–100 заявок", icon: "TrendingUp", value: "100", desc: "Активные продажи" },
+      { label: "100–200 заявок", icon: "Rocket", value: "200", desc: "Системный рост" },
+      { label: "Более 200 заявок", icon: "BarChart3", value: "200+", desc: "Масштаб и поток" },
     ],
   },
   {
-    id: "current",
-    question: "Как сейчас привлекаете клиентов?",
-    subtitle: "Текущий источник лидов",
+    id: "sales",
+    question: "Есть действующий отдел продаж?",
+    subtitle: "Это поможет подобрать правильную модель передачи лидов",
     type: "choice",
     options: [
-      { label: "Контекстная реклама", icon: "MousePointer2", value: "context" },
-      { label: "Соцсети / таргет", icon: "Share2", value: "social" },
-      { label: "Рекомендации", icon: "Users", value: "referral" },
-      { label: "Пока никак", icon: "CircleOff", value: "none" },
+      { label: "Да, отдел есть", icon: "Users", value: "yes", desc: "Менеджеры готовы к приёму заявок" },
+      { label: "Обрабатываю сам", icon: "User", value: "solo", desc: "Пока без команды" },
+      { label: "Нанимаем под запуск", icon: "UserPlus", value: "hiring", desc: "Формируем команду" },
+      { label: "Нужна помощь в настройке", icon: "Settings", value: "help", desc: "Помогите выстроить процесс" },
     ],
   },
   {
     id: "contact",
-    question: "Куда отправить прогноз?",
-    subtitle: "Перезвоним в течение 15 минут",
+    question: "Подготовим прогноз под ваш бизнес",
+    subtitle: "Оставьте контакт — перезвоним в течение 15 минут и пришлём расчёт",
     type: "contact",
   },
 ]
 
 const forecastMap: Record<string, Record<string, { leads: string; price: string; conversion: string }>> = {
   investments: {
-    "20": { leads: "20–40", price: "1 500 ₽", conversion: "до 8%" },
-    "50": { leads: "50–80", price: "1 350 ₽", conversion: "до 10%" },
-    "100": { leads: "100–140", price: "1 200 ₽", conversion: "до 12%" },
-    "200": { leads: "200+", price: "от 900 ₽", conversion: "до 15%" },
+    "50": { leads: "30–50", price: "1 500 ₽", conversion: "до 8%" },
+    "100": { leads: "60–100", price: "1 350 ₽", conversion: "до 10%" },
+    "200": { leads: "120–200", price: "1 200 ₽", conversion: "до 12%" },
+    "200+": { leads: "200+", price: "от 900 ₽", conversion: "до 15%" },
   },
   franchise: {
-    "20": { leads: "20–35", price: "1 600 ₽", conversion: "до 6%" },
-    "50": { leads: "50–75", price: "1 400 ₽", conversion: "до 8%" },
-    "100": { leads: "100–130", price: "1 250 ₽", conversion: "до 10%" },
-    "200": { leads: "200+", price: "от 1 000 ₽", conversion: "до 12%" },
+    "50": { leads: "30–50", price: "1 600 ₽", conversion: "до 6%" },
+    "100": { leads: "60–100", price: "1 400 ₽", conversion: "до 8%" },
+    "200": { leads: "120–200", price: "1 250 ₽", conversion: "до 10%" },
+    "200+": { leads: "200+", price: "от 1 000 ₽", conversion: "до 12%" },
   },
   realty: {
-    "20": { leads: "20–45", price: "1 700 ₽", conversion: "до 5%" },
-    "50": { leads: "50–90", price: "1 500 ₽", conversion: "до 7%" },
-    "100": { leads: "100–150", price: "1 300 ₽", conversion: "до 9%" },
-    "200": { leads: "200+", price: "от 1 100 ₽", conversion: "до 11%" },
+    "50": { leads: "30–50", price: "1 700 ₽", conversion: "до 5%" },
+    "100": { leads: "60–100", price: "1 500 ₽", conversion: "до 7%" },
+    "200": { leads: "120–200", price: "1 300 ₽", conversion: "до 9%" },
+    "200+": { leads: "200+", price: "от 1 100 ₽", conversion: "до 11%" },
   },
   other: {
-    "20": { leads: "20–40", price: "1 600 ₽", conversion: "до 7%" },
-    "50": { leads: "50–80", price: "1 400 ₽", conversion: "до 9%" },
-    "100": { leads: "100–140", price: "1 200 ₽", conversion: "до 11%" },
-    "200": { leads: "200+", price: "от 1 000 ₽", conversion: "до 13%" },
+    "50": { leads: "30–50", price: "1 600 ₽", conversion: "до 7%" },
+    "100": { leads: "60–100", price: "1 400 ₽", conversion: "до 9%" },
+    "200": { leads: "120–200", price: "1 200 ₽", conversion: "до 11%" },
+    "200+": { leads: "200+", price: "от 1 000 ₽", conversion: "до 13%" },
   },
 }
 
@@ -99,7 +114,7 @@ export function QuizSection() {
   function selectChoice(value: string) {
     setAnswers((prev) => ({ ...prev, [step.id]: value }))
     setDirection(1)
-    setTimeout(() => setCurrentStep((s) => s + 1), 180)
+    setTimeout(() => setCurrentStep((s) => s + 1), 200)
   }
 
   function goBack() {
@@ -113,182 +128,186 @@ export function QuizSection() {
   }
 
   const niche = answers["niche"] || "investments"
-  const volume = answers["volume"] || "20"
-  const forecast = forecastMap[niche]?.[volume] ?? { leads: "20–50", price: "1 500 ₽", conversion: "до 8%" }
+  const volume = answers["volume"] || "50"
+  const forecast = forecastMap[niche]?.[volume] ?? { leads: "30–50", price: "1 500 ₽", conversion: "до 8%" }
 
   return (
-    <section className="relative" id="quiz">
-      {/* Peek strip at bottom of hero */}
-      <div className="h-8 bg-primary" />
-
-      <div className="bg-primary pb-12 sm:pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto -mt-2">
-
-            {/* Card */}
-            <div className="bg-white border border-white/20 overflow-hidden shadow-xl">
-
-              {/* Progress bar */}
-              <div className="h-1 bg-blue-200">
+    <section className="py-0 relative" id="quiz">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-card rounded-3xl border border-border shadow-xl shadow-primary/5 overflow-hidden -mt-12 relative z-10"
+          >
+            <div className="bg-primary px-8 pt-7 pb-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="w-4 h-4 text-primary-foreground/80" />
+                <span className="text-primary-foreground/80 text-sm font-medium">Бесплатный расчёт прогноза</span>
+              </div>
+              <p className="text-primary-foreground text-lg font-bold font-display">
+                Ответьте на 4 вопроса — получите прогноз по лидам и стоимости привлечения
+              </p>
+              <div className="mt-4 h-1.5 bg-primary-foreground/20 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-primary"
+                  className="h-full bg-primary-foreground rounded-full"
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.4 }}
                 />
               </div>
-
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                <div>
-                  <p className="text-xs text-muted-foreground">Бесплатный расчёт прогноза</p>
-                  <p className="text-sm font-semibold">Шаг {currentStep + 1} из {steps.length}</p>
-                </div>
-                {currentStep > 0 && !submitted && (
-                  <button
-                    onClick={goBack}
-                    className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <ChevronLeft className="w-3.5 h-3.5" />
-                    Назад
-                  </button>
-                )}
-              </div>
-
-              {/* Body */}
-              <div className="p-6 sm:p-8">
-                {!submitted ? (
-                  <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                      key={step.id}
-                      custom={direction}
-                      initial={{ opacity: 0, x: direction * 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: direction * -30 }}
-                      transition={{ duration: 0.22 }}
-                    >
-                      <h3 className="font-display text-xl font-bold mb-1">{step.question}</h3>
-                      {step.subtitle && (
-                        <p className="text-sm text-muted-foreground mb-5">{step.subtitle}</p>
-                      )}
-
-                      {step.type === "choice" && step.options && (
-                        <div className="grid grid-cols-2 gap-2">
-                          {step.options.map((opt) => {
-                            const selected = answers[step.id] === opt.value
-                            return (
-                              <button
-                                key={opt.value}
-                                onClick={() => selectChoice(opt.value)}
-                                className={`flex items-start gap-3 p-4 border text-left transition-all ${
-                                  selected
-                                    ? "border-primary bg-primary/5"
-                                    : "border-border hover:border-primary/40 hover:bg-secondary/50"
-                                }`}
-                              >
-                                <div className={`w-8 h-8 flex items-center justify-center shrink-0 ${selected ? "bg-primary/15" : "bg-secondary"}`}>
-                                  <Icon name={opt.icon} className={`w-4 h-4 ${selected ? "text-primary" : "text-muted-foreground"}`} />
-                                </div>
-                                <div>
-                                  <p className="text-sm font-semibold leading-tight">{opt.label}</p>
-                                  {opt.desc && <p className="text-xs text-muted-foreground mt-0.5">{opt.desc}</p>}
-                                </div>
-                              </button>
-                            )
-                          })}
-                        </div>
-                      )}
-
-                      {isContact && (
-                        <div className="space-y-4">
-                          {/* Forecast preview */}
-                          <div className="bg-secondary border border-border p-4">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Предварительный прогноз</p>
-                            <div className="grid grid-cols-3 gap-3">
-                              <div>
-                                <p className="font-display text-xl font-bold text-primary">{forecast.leads}</p>
-                                <p className="text-xs text-muted-foreground">лидов / мес.</p>
-                              </div>
-                              <div>
-                                <p className="font-display text-xl font-bold text-primary">{forecast.price}</p>
-                                <p className="text-xs text-muted-foreground">за лид</p>
-                              </div>
-                              <div>
-                                <p className="font-display text-xl font-bold text-primary">{forecast.conversion}</p>
-                                <p className="text-xs text-muted-foreground">конверсия</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="grid sm:grid-cols-2 gap-3">
-                            <div>
-                              <label className="block text-sm font-medium mb-1">Имя</label>
-                              <Input
-                                placeholder="Александр"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="h-10"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium mb-1">Телефон *</label>
-                              <Input
-                                type="tel"
-                                placeholder="+7 (999) 000-00-00"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                className="h-10"
-                              />
-                            </div>
-                          </div>
-
-                          <button
-                            onClick={handleSubmit}
-                            disabled={phone.length < 6}
-                            className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-6 py-3 hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            Получить прогноз и консультацию
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-                          <p className="text-xs text-center text-muted-foreground">
-                            Перезвоним в течение 15 минут. Без спама.
-                          </p>
-                        </div>
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center py-4"
-                  >
-                    <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle2 className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-2">Заявка принята!</h3>
-                    <p className="text-sm text-muted-foreground mb-5">
-                      Перезвоним в течение 15 минут и пришлём точный расчёт.
-                    </p>
-                    <div className="grid grid-cols-3 gap-3 bg-secondary border border-border p-4">
-                      <div>
-                        <p className="font-display text-xl font-bold text-primary">{forecast.leads}</p>
-                        <p className="text-xs text-muted-foreground">лидов / мес.</p>
-                      </div>
-                      <div>
-                        <p className="font-display text-xl font-bold text-primary">{forecast.price}</p>
-                        <p className="text-xs text-muted-foreground">за лид</p>
-                      </div>
-                      <div>
-                        <p className="font-display text-xl font-bold text-primary">{forecast.conversion}</p>
-                        <p className="text-xs text-muted-foreground">конверсия</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
+              <div className="flex justify-between mt-1.5">
+                <span className="text-xs text-primary-foreground/60">Шаг {currentStep + 1} из {steps.length}</span>
+                <span className="text-xs text-primary-foreground/60">{Math.round(progress)}%</span>
               </div>
             </div>
 
-          </div>
+            <div className="p-8">
+              {!submitted ? (
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={step.id}
+                    custom={direction}
+                    initial={{ opacity: 0, x: direction * 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: direction * -40 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <h3 className="font-display text-2xl font-bold mb-1">{step.question}</h3>
+                    {step.subtitle && (
+                      <p className="text-muted-foreground text-sm mb-6">{step.subtitle}</p>
+                    )}
+
+                    {step.type === "choice" && step.options && (
+                      <div className="grid grid-cols-2 gap-3">
+                        {step.options.map((opt) => {
+                          const selected = answers[step.id] === opt.value
+                          return (
+                            <button
+                              key={opt.value}
+                              onClick={() => selectChoice(opt.value)}
+                              className={`flex items-start gap-3 p-4 rounded-xl border text-left transition-all group ${
+                                selected
+                                  ? "border-primary bg-primary/10"
+                                  : "border-border bg-secondary/30 hover:border-primary/50 hover:bg-primary/5"
+                              }`}
+                            >
+                              <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${selected ? "bg-primary/20" : "bg-background group-hover:bg-primary/10"}`}>
+                                <Icon name={opt.icon} className={`w-4 h-4 ${selected ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`} />
+                              </div>
+                              <div>
+                                <p className="text-sm font-semibold leading-tight">{opt.label}</p>
+                                {opt.desc && <p className="text-xs text-muted-foreground mt-0.5">{opt.desc}</p>}
+                              </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    )}
+
+                    {step.type === "contact" && (
+                      <div className="space-y-5">
+                        <div className="bg-secondary/50 rounded-2xl p-5 border border-border">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Ваш предварительный прогноз</p>
+                          <div className="grid grid-cols-3 gap-4">
+                            <div>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.leads}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">лидов / мес.</p>
+                            </div>
+                            <div>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.price}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">за лид</p>
+                            </div>
+                            <div>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.conversion}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">конверсия</p>
+                            </div>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-3 pt-3 border-t border-border">
+                            Точный расчёт по каналам и стоимости пришлём после звонка
+                          </p>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-sm font-medium mb-1.5">Ваше имя</label>
+                            <Input
+                              placeholder="Александр"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="h-11"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1.5">Номер телефона</label>
+                            <Input
+                              type="tel"
+                              placeholder="+7 (999) 000-00-00"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              className="h-11"
+                              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                            />
+                          </div>
+                        </div>
+
+                        <Button
+                          onClick={handleSubmit}
+                          className="w-full h-12 text-base font-semibold"
+                          disabled={phone.length < 6}
+                        >
+                          Получить прогноз и консультацию
+                          <ChevronRight className="w-4 h-4 ml-1" />
+                        </Button>
+                        <p className="text-xs text-center text-muted-foreground">
+                          Позвоним в течение 15 минут. Без спама. Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                        </p>
+                      </div>
+                    )}
+
+                    {currentStep > 0 && (
+                      <button
+                        onClick={goBack}
+                        className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mt-5"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        Назад
+                      </button>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-center py-6"
+                >
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                    <CheckCircle2 className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold mb-2">Заявка принята!</h3>
+                  <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
+                    Перезвоним в течение 15 минут, обсудим задачу и пришлём точный прогноз по лидам и каналам.
+                  </p>
+                  <div className="grid grid-cols-3 gap-4 bg-secondary/40 rounded-2xl p-5 max-w-sm mx-auto">
+                    <div>
+                      <p className="font-display text-xl font-bold text-primary">{forecast.leads}</p>
+                      <p className="text-xs text-muted-foreground">лидов / мес.</p>
+                    </div>
+                    <div>
+                      <p className="font-display text-xl font-bold text-primary">{forecast.price}</p>
+                      <p className="text-xs text-muted-foreground">за лид</p>
+                    </div>
+                    <div>
+                      <p className="font-display text-xl font-bold text-primary">{forecast.conversion}</p>
+                      <p className="text-xs text-muted-foreground">конверсия</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
