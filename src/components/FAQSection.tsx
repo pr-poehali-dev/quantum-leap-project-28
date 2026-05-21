@@ -1,105 +1,76 @@
 import { motion } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ShinyButton } from "@/components/ui/shiny-button"
-import { ArrowRight } from "lucide-react"
 
 const faqs = [
   {
-    question: "Когда можно получить первые лиды?",
+    question: "Что такое «лид» и что именно вы передаёте?",
     answer:
-      "Первые качественные лиды поступают уже через 24 часа после запуска кампании. Это одно из наших ключевых отличий — не нужно ждать недели «раскачки». Настройка, лендинг и аналитика готовятся параллельно с согласованием условий.",
+      "Лид — это контактные данные человека, заинтересованного в вашем продукте. Мы передаём: имя, номер телефона и краткое описание запроса клиента (что ищет, какой бюджет, в какие сроки). Вы получаете тёплый контакт, которому уже можно позвонить.",
   },
   {
-    question: "Сколько лидов вы можете давать?",
+    question: "Через сколько времени я получу первые лиды?",
     answer:
-      "В зависимости от ниши и выбранного канала — от 20 до 120+ лидов в сутки. Перед стартом мы рассчитываем прогноз по объёму именно под вашу нишу и план продаж. Указанные цифры фиксируются в договоре.",
+      "Первые лиды поступают уже через 24 часа после согласования условий и запуска кампании. Это одно из наших ключевых преимуществ — не нужно ждать недели, пока «раскачается» реклама.",
   },
   {
-    question: "Как вы определяете канал продвижения?",
+    question: "Что происходит, если лид оказался нецелевым?",
     answer:
-      "На основе анализа ниши, конкурентной среды и вашей целевой аудитории. Мы не применяем один инструмент ко всем — подбираем канал с максимальной отдачей для конкретного бизнеса: таргет, контекст, нативная реклама, SEO-трафик или комбинация.",
+      "Мы заменяем нецелевой лид бесплатно. Перед стартом мы согласовываем критерии целевого лида. Если полученный контакт им не соответствует — сообщаете нам, и мы предоставляем замену без дополнительных оплат.",
   },
   {
-    question: "Что считается нецелевым лидом?",
+    question: "В каких нишах вы работаете?",
     answer:
-      "Перед стартом мы вместе с вами согласовываем портрет целевого лида: бюджет, намерение, регион, другие параметры. Если полученный контакт не соответствует этим критериям — это нецелевой лид. Такие лиды мы заменяем бесплатно без дополнительных обсуждений.",
+      "Основные направления: частные инвестиции, продажа франшиз и недвижимость (новостройки). За 7 лет работы мы наработали экспертизу именно в этих нишах. Также берём другие направления — обсудите вашу нишу с менеджером, и мы оценим возможности.",
   },
   {
-    question: "Вы работаете только с инвестициями, франшизами и недвижимостью?",
+    question: "Как рассчитывается стоимость?",
     answer:
-      "Нет. Эти три ниши — наша проверенная экспертиза с измеримыми результатами. Но мы работаем и с другими направлениями: EdTech, медицина, юридические услуги, страхование, B2B-сервисы. В таких случаях проводим анализ ниши и предлагаем индивидуальную стратегию.",
+      "Цена зависит от ниши и объёма: чем больше лидов в месяц — тем ниже стоимость одного контакта. Стартовая цена — от 1 500 ₽ за лид. Перед запуском мы делаем прогноз и фиксируем стоимость в договоре.",
   },
   {
-    question: "Как строится прогноз?",
+    question: "Вы работаете с небольшими компаниями?",
     answer:
-      "Мы анализируем нишу, объём поискового и рекламного спроса, конкуренцию и исторические данные по похожим проектам. На выходе — расчёт: сколько лидов можно получить, по какой цене и с какой конверсией. Прогноз согласовывается до старта и фиксируется письменно.",
-  },
-  {
-    question: "Сколько стоят ваши услуги?",
-    answer:
-      "Стоимость зависит от ниши, объёма и выбранного канала. Модель оплаты: за лид или абонентская. Чем выше объём — тем ниже цена за контакт. Точную стоимость рассчитываем после брифа и прогноза. Пройдите квиз — подготовим предварительный расчёт бесплатно.",
-  },
-  {
-    question: "Как быстро можно запустить проект?",
-    answer:
-      "Стандартный старт — 24–48 часов с момента согласования условий. Мы не тратим время на долгие согласования: быстро изучаем задачу, согласовываем критерии и запускаем. Первые лиды — уже на следующий день.",
+      "Да, мы работаем с бизнесами любого размера. Минимальный пакет — от 20 лидов в месяц. Если вы только начинаете или хотите протестировать канал — это отличная точка старта.",
   },
 ]
 
 export function FAQSection() {
   return (
-    <section className="py-20 sm:py-28 bg-secondary/20" id="faq">
+    <section className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:sticky lg:top-24"
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-medium px-4 py-1.5 rounded-full mb-5">
-              FAQ
-            </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Частые вопросы
-            </h2>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Всё, что нужно знать о работе с «Вам Лям!» до принятия решения.
-            </p>
-            <ShinyButton
-              variant="secondary"
-              onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Задать свой вопрос
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </ShinyButton>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center max-w-[640px] mx-auto mb-12"
+        >
+          <div className="flex justify-center">
+            <div className="border border-border py-1 px-4 rounded-lg text-sm text-muted-foreground">FAQ</div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Accordion type="single" collapsible className="w-full space-y-3">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30"
-                >
-                  <AccordionTrigger className="text-left font-display text-base font-semibold py-5 hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-        </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mt-5 text-center">
+            Частые вопросы
+          </h2>
+          <p className="text-center mt-5 text-muted-foreground">Всё, что нужно знать о работе с «Вам Лям!».</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto"
+        >
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left font-display text-lg">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   )
