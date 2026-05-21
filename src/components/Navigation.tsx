@@ -70,7 +70,7 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="font-display text-xl font-bold text-gray-900 hover:text-[#392AE7] transition-colors">
+          <Link to="/" className="font-display text-gray-900 hover:text-[#392AE7] transition-colors text-xl font-black">
             Вам Лям!
           </Link>
 
