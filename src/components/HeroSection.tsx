@@ -135,7 +135,7 @@ export function HeroSection() {
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-6">
                   <TrendingUp className="w-5 h-5" />
-                  <span className="font-semibold text-white/90 text-sm">Статистика за 2024 год</span>
+                  <span className="font-semibold text-white/90 text-sm">Вам Лям! - это системный и стабильный результат</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
