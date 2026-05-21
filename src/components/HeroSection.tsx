@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react"
+import { ArrowRight, TrendingUp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -111,14 +111,7 @@ export function HeroSection() {
               </Link>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-8">
-              {["Гарантия замены лидов", "Оплата за результат", "Работаем с 2018 года"].map((item) => (
-                <div key={item} className="flex items-center gap-1.5 text-sm text-gray-500">
-                  <CheckCircle2 className="w-4 h-4 text-[#392AE7] shrink-0" />
-                  {item}
-                </div>
-              ))}
-            </div>
+
           </motion.div>
 
           <motion.div
@@ -178,16 +171,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mt-3">
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                <div className="text-xs text-gray-400 mb-1">Средняя стоимость лида</div>
-                <div className="font-display font-bold text-xl text-gray-900">от 800 ₽</div>
-              </div>
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4">
-                <div className="text-xs text-gray-400 mb-1">Срок запуска</div>
-                <div className="font-display font-bold text-xl text-gray-900">1–2 дня</div>
-              </div>
-            </div>
+
           </motion.div>
         </div>
       </div>
