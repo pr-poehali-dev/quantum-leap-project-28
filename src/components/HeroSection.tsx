@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 const stats = [
   { value: "250+", label: "компаний вырастили" },
@@ -16,7 +17,23 @@ const niches = [
   { label: "Другие ниши", href: "/#quiz" },
 ]
 
+const rotatingTexts = [
+  "Вашего бизнеса",
+  "инвестиционных компаний",
+  "агентств недвижимости",
+  "франчайзинговых компаний",
+]
+
 export function HeroSection() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % rotatingTexts.length)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white" id="hero">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +48,23 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-5xl">Горячий поток клиентов для Вашего бизнеса </h1>
+            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-5xl">
+              Горячий поток клиентов для{" "}
+              <span className="inline-block relative" style={{ minWidth: "1ch" }}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -16 }}
+                    transition={{ duration: 0.35 }}
+                    className="inline-block font-black text-[#392AE7]"
+                  >
+                    {rotatingTexts[index]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </h1>
 
             <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
               Генерируем целевые лиды в сфере недвижимости, франшиз и частных инвестиций. Первые клиенты — уже через 24 часа.
