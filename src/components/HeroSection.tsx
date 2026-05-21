@@ -49,7 +49,7 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-5xl">
+            <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-4xl">
               Генерируем горячий поток
               <br />
               <span className="inline-block relative overflow-hidden" style={{ minHeight: "1.15em" }}>
