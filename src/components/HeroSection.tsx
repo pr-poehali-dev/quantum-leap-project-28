@@ -150,7 +150,7 @@ export function HeroSection() {
                 <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm overflow-hidden">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Свежий лид</div>
+                    <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Свежие клиенты в 1 руки</div>
                   </div>
                   <AnimatePresence mode="wait">
                     <motion.div
