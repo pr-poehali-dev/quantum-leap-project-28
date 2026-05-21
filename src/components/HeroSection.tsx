@@ -1,7 +1,7 @@
 import { ArrowRight, CheckCircle2, TrendingUp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 
 const stats = [
   { value: "250+", label: "компаний вырастили" },
@@ -25,42 +25,7 @@ const rotatingTexts = [
   "покупателей готового бизнеса",
 ]
 
-function TypewriterText({ text }: { text: string }) {
-  const [displayed, setDisplayed] = useState("")
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  useEffect(() => {
-    setDisplayed("")
-    let i = 0
-    function type() {
-      if (i <= text.length) {
-        setDisplayed(text.slice(0, i))
-        i++
-        timeoutRef.current = setTimeout(type, 38)
-      }
-    }
-    timeoutRef.current = setTimeout(type, 80)
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
-  }, [text])
-
-  return (
-    <span
-      className="text-[#392AE7] relative"
-      style={{
-        borderBottom: "3px solid #392AE7",
-        paddingBottom: "2px",
-      }}
-    >
-      {displayed}
-      <motion.span
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        className="inline-block w-[2px] h-[0.9em] bg-[#392AE7] align-middle ml-[1px]"
-        style={{ verticalAlign: "middle" }}
-      />
-    </span>
-  )
-}
 
 export function HeroSection() {
   const [index, setIndex] = useState(0)
@@ -86,19 +51,29 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.35 }}>
+            <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.2 }}>
               Генерируем горячий поток{" "}
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <TypewriterText text={rotatingTexts[index]} />
-                </motion.span>
-              </AnimatePresence>
+              <span className="inline">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, y: "50%", filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: "0%", filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: "-50%", filter: "blur(4px)" }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-black text-white"
+                    style={{
+                      backgroundColor: "#392AE7",
+                      WebkitBoxDecorationBreak: "clone",
+                      boxDecorationBreak: "clone",
+                      padding: "1px 5px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    {rotatingTexts[index]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </h1>
 
             <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте системный и стабильный поток клиентов с гарантией качества и заменой не целевых*</p>
