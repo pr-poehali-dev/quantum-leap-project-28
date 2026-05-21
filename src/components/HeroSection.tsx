@@ -70,11 +70,6 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#392AE7]" />
-              Агентство по генерации клиентов
-            </div>
-
             <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.05 }}>
               Генерируем горячий поток{" "}
               <span className="inline">

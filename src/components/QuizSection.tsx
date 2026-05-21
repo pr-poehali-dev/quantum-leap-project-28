@@ -99,11 +99,14 @@ const forecastMap: Record<string, Record<string, { leads: string; price: string;
   },
 }
 
-export function QuizSection() {
+type Props = { openLegal?: () => void }
+
+export function QuizSection({ openLegal }: Props) {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
+  const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [direction, setDirection] = useState(1)
 
@@ -123,7 +126,7 @@ export function QuizSection() {
   }
 
   function handleSubmit() {
-    if (phone.length < 6) return
+    if (phone.length < 6 || !consent) return
     setSubmitted(true)
   }
 
@@ -251,16 +254,36 @@ export function QuizSection() {
                           </div>
                         </div>
 
+                        <label className="flex items-start gap-2.5 cursor-pointer group">
+                          <input
+                            type="checkbox"
+                            checked={consent}
+                            onChange={(e) => setConsent(e.target.checked)}
+                            className="mt-0.5 w-4 h-4 accent-[#392AE7] cursor-pointer shrink-0"
+                            aria-required="true"
+                          />
+                          <span className="text-xs text-muted-foreground leading-relaxed">
+                            Я согласен(а) на обработку персональных данных в соответствии с{" "}
+                            <button
+                              type="button"
+                              onClick={openLegal}
+                              className="text-[#392AE7] hover:underline focus:outline-none"
+                            >
+                              Политикой конфиденциальности
+                            </button>
+                          </span>
+                        </label>
+
                         <Button
                           onClick={handleSubmit}
                           className="w-full h-12 text-base font-semibold"
-                          disabled={phone.length < 6}
+                          disabled={phone.length < 6 || !consent}
                         >
                           Получить прогноз и консультацию
                           <ChevronRight className="w-4 h-4 ml-1" />
                         </Button>
                         <p className="text-xs text-center text-muted-foreground">
-                          Позвоним в течение 15 минут. Без спама. Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                          Позвоним в течение 15 минут. Без спама и навязчивых рассылок.
                         </p>
                       </div>
                     )}
