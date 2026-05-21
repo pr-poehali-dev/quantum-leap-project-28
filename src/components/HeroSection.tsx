@@ -74,9 +74,7 @@ export function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
-              Генерируем целевые лиды в сфере недвижимости, франшиз и частных инвестиций. Первые клиенты — уже через 24 часа.
-            </p>
+            <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте системный и стабильный поток клиентов с гарантией качества и заменой не целевых*</p>
 
             <div className="flex flex-wrap gap-3 mb-10">
               {niches.map((n) => (
