@@ -100,9 +100,7 @@ export function HeroSection() {
               Работаем с 2018 года · 250+ клиентов
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.05] font-display mb-5">
-              До 120 клиентов<br />в сутки — уже<br />через 24 часа
-            </h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.05] font-display mb-5">Получайте до 120 клиентов уже через 24 часа</h1>
 
             <p className="text-base text-muted-foreground mb-8 leading-relaxed max-w-md">
               Генерируем целевые лиды для инвестиционных проектов, франшиз и недвижимости. Гарантия качества — заменяем нецелевых бесплатно.
