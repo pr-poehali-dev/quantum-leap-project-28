@@ -103,20 +103,7 @@ export function HeroSection() {
 
             <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте системный и стабильный поток клиентов с гарантией качества и заменой не целевых*</p>
 
-            <div className="flex flex-wrap gap-3 mb-10">
-              {niches.map((n) => (
-                <Link
-                  key={n.href}
-                  to={n.href}
-                  className="inline-flex items-center gap-1.5 bg-gray-50 hover:bg-[#392AE7] hover:text-white text-gray-700 border border-gray-200 hover:border-[#392AE7] text-sm font-medium px-4 py-2 rounded-full transition-all duration-200"
-                >
-                  {n.label}
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <button
                 onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center justify-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/25 hover:shadow-[#392AE7]/40"

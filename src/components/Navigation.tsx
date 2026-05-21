@@ -1,20 +1,39 @@
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 const navLinks = [
   { label: "О нас", href: "/#trust" },
   { label: "Кейсы", href: "/cases" },
-  { label: "Направления", href: "/#niches" },
   { label: "Услуги", href: "/#services" },
   { label: "Партнёрство", href: "/#faq" },
+]
+
+const nichesDropdown = [
+  { label: "Недвижимость", href: "/niches/nedvizhimost" },
+  { label: "Франшизы", href: "/niches/franshizy" },
+  { label: "Инвестиции", href: "/niches/investitsii" },
+  { label: "Другие ниши", href: "/#niches" },
 ]
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [nichesOpen, setNichesOpen] = useState(false)
+  const [mobileNichesOpen, setMobileNichesOpen] = useState(false)
+  const nichesRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (nichesRef.current && !nichesRef.current.contains(e.target as Node)) {
+        setNichesOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -56,6 +75,49 @@ export function Navigation() {
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
+            <div className="relative" ref={nichesRef}>
+              <button
+                onClick={() => setNichesOpen((v) => !v)}
+                className={`flex items-center gap-1 text-sm px-3 py-2 rounded-xl transition-colors ${
+                  nichesOpen ? "text-[#392AE7] bg-[#392AE7]/8 font-semibold" : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+                }`}
+              >
+                Направления
+                <Icon name="ChevronDown" className={`w-3.5 h-3.5 transition-transform duration-200 ${nichesOpen ? "rotate-180" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {nichesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-black/8 overflow-hidden z-50 py-1"
+                  >
+                    {nichesDropdown.map((item) =>
+                      item.href.startsWith("/#") ? (
+                        <button
+                          key={item.href}
+                          onClick={() => { setNichesOpen(false); handleNavClick(item.href) }}
+                          className="w-full text-left px-4 py-2.5 text-sm text-gray-600 hover:text-[#392AE7] hover:bg-[#392AE7]/5 transition-colors"
+                        >
+                          {item.label}
+                        </button>
+                      ) : (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          onClick={() => setNichesOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#392AE7] hover:bg-[#392AE7]/5 transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             {navLinks.map((link) => {
               const isActive = !link.href.startsWith("/#") && location.pathname === link.href
               return link.href.startsWith("/#") ? (
@@ -110,6 +172,37 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden border-t border-gray-100 bg-white pb-4"
           >
+            <button
+              onClick={() => setMobileNichesOpen((v) => !v)}
+              className="flex items-center justify-between w-full py-3 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              Направления
+              <Icon name="ChevronDown" className={`w-4 h-4 transition-transform duration-200 ${mobileNichesOpen ? "rotate-180" : ""}`} />
+            </button>
+            {mobileNichesOpen && (
+              <div className="pl-4 mb-1">
+                {nichesDropdown.map((item) =>
+                  item.href.startsWith("/#") ? (
+                    <button
+                      key={item.href}
+                      onClick={() => { setMobileNichesOpen(false); handleNavClick(item.href) }}
+                      className="block w-full text-left py-2 text-sm text-gray-400 hover:text-[#392AE7] transition-colors"
+                    >
+                      {item.label}
+                    </button>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block py-2 text-sm text-gray-400 hover:text-[#392AE7] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
+              </div>
+            )}
             {navLinks.map((link) =>
               link.href.startsWith("/#") ? (
                 <button
