@@ -130,11 +130,11 @@ export function HeroSection() {
                   <span className="font-semibold text-white/90 text-sm">Вам Лям! - это системный и стабильный результат</span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4 mb-6">
                   {stats.map((stat) => (
-                    <div key={stat.value} className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                      <div className="font-display text-3xl font-bold mb-1">{stat.value}</div>
-                      <div className="text-sm text-white/70">{stat.label}</div>
+                    <div key={stat.value}>
+                      <div className="font-display text-3xl font-bold">{stat.value}</div>
+                      <div className="text-sm text-white/70 mt-0.5">{stat.label}</div>
                     </div>
                   ))}
                 </div>
