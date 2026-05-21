@@ -50,9 +50,8 @@ export function HeroSection() {
             </div>
 
             <h1 className="font-display sm:text-5xl lg:text-6xl leading-tight mb-6 font-black text-slate-800 px-0 text-4xl">
-              Генерируем горячий поток
-              <br />
-              <span className="inline-block relative overflow-hidden" style={{ minHeight: "1.15em" }}>
+              Генерируем горячий поток{" "}
+              <span className="inline relative">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={index}
@@ -60,9 +59,13 @@ export function HeroSection() {
                     animate={{ opacity: 1, y: "0%", filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: "-60%", filter: "blur(6px)" }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                    className="inline-block font-black text-[#392AE7] px-3 py-1 rounded-xl"
+                    className="font-black text-white"
                     style={{
-                      boxShadow: "inset 0 0 0 2.5px #392AE7",
+                      backgroundColor: "#392AE7",
+                      WebkitBoxDecorationBreak: "clone",
+                      boxDecorationBreak: "clone",
+                      padding: "0 6px 2px",
+                      borderRadius: "4px",
                     }}
                   >
                     {rotatingTexts[index]}
