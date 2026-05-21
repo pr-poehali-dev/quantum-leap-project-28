@@ -94,7 +94,7 @@ export function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте до 300 теплых клиентов в сутки и платите только за целевых и заинтересованных</p>
+            <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте 100+ потенциальных клиентов в сутки и платите только за целевых и заинтересованных</p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <button
