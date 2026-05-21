@@ -10,6 +10,14 @@ const stats = [
   { value: "97%", label: "довольных клиентов" },
 ]
 
+const liveleads = [
+  { name: "Алексей М.", avatar: "А", desc: "Готов инвестировать от 2 млн в недвижимость", phone: "+7 (9••) •••-••-72", city: "Москва", time: "Только что" },
+  { name: "Елена С.", avatar: "Е", desc: "Ищу франшизу от 500 тыс. рублей", phone: "+7 (9••) •••-••-14", city: "Санкт-Петербург", time: "1 мин назад" },
+  { name: "Дмитрий К.", avatar: "Д", desc: "Рассматриваю покупку готового бизнеса", phone: "+7 (9••) •••-••-38", city: "Краснодар", time: "2 мин назад" },
+  { name: "Ольга В.", avatar: "О", desc: "Хочу купить квартиру в новостройке", phone: "+7 (9••) •••-••-91", city: "Екатеринбург", time: "Только что" },
+  { name: "Игорь Н.", avatar: "И", desc: "Ищу инвестиции от 1 млн на 12 месяцев", phone: "+7 (9••) •••-••-55", city: "Казань", time: "3 мин назад" },
+]
+
 const niches = [
   { label: "Недвижимость", href: "/niches/nedvizhimost" },
   { label: "Франшизы", href: "/niches/franshizy" },
@@ -29,11 +37,19 @@ const rotatingTexts = [
 
 export function HeroSection() {
   const [index, setIndex] = useState(0)
+  const [leadIndex, setLeadIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % rotatingTexts.length)
     }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLeadIndex((prev) => (prev + 1) % liveleads.length)
+    }, 3000)
     return () => clearInterval(timer)
   }, [])
 
@@ -131,18 +147,34 @@ export function HeroSection() {
                   ))}
                 </div>
 
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                  <div className="text-xs text-white/60 mb-2 font-medium uppercase tracking-wide">Свежий лид</div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">
-                      А
-                    </div>
-                    <div>
-                      <div className="font-semibold text-sm">Алексей М.</div>
-                      <div className="text-xs text-white/70 mt-0.5">Готов инвестировать от 2 млн рублей в недвижимость</div>
-                      <div className="text-xs text-white/50 mt-1.5">Только что · Москва</div>
-                    </div>
+                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm overflow-hidden">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Свежий лид</div>
                   </div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={leadIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">
+                        {liveleads[leadIndex].avatar}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-semibold text-sm">{liveleads[leadIndex].name}</div>
+                        <div className="text-xs text-white/70 mt-0.5">{liveleads[leadIndex].desc}</div>
+                        <div className="text-xs text-white/60 mt-1 font-mono">
+                          {liveleads[leadIndex].phone.slice(0, 7)}
+                          <span className="blur-sm select-none">{liveleads[leadIndex].phone.slice(7)}</span>
+                        </div>
+                        <div className="text-xs text-white/50 mt-1">{liveleads[leadIndex].time} · {liveleads[leadIndex].city}</div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
