@@ -51,7 +51,7 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.2 }}>
+            <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.05 }}>
               Генерируем горячий поток{" "}
               <span className="inline">
                 <AnimatePresence mode="wait">
@@ -66,8 +66,10 @@ export function HeroSection() {
                       backgroundColor: "#392AE7",
                       WebkitBoxDecorationBreak: "clone",
                       boxDecorationBreak: "clone",
-                      padding: "1px 5px",
+                      padding: "0 5px",
+                      lineHeight: 1.15,
                       borderRadius: "4px",
+                      display: "inline",
                     }}
                   >
                     {rotatingTexts[index]}
