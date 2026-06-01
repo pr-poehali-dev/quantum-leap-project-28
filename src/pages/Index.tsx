@@ -21,7 +21,7 @@ export default function Index() {
   const [legalDoc, setLegalDoc] = useState<LegalDoc | null>(null)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navigation />
 
       <main>
@@ -40,7 +40,7 @@ export default function Index() {
       </main>
 
       {/* Футер */}
-      <footer className="border-t border-gray-100 bg-gray-50 py-14" role="contentinfo">
+      <footer className="border-t border-gray-100 bg-white/30 py-14" role="contentinfo">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-10 mb-12">
             {/* О компании */}

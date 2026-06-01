@@ -65,7 +65,7 @@ export function Navigation() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || menuOpen
-          ? "bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm"
+          ? "bg-white/60 backdrop-blur-xl backdrop-saturate-150 border-b border-white/40 shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -93,7 +93,7 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.97 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-black/8 overflow-hidden z-50 py-1"
+                    className="absolute top-full left-0 mt-2 w-52 glass rounded-2xl shadow-xl overflow-hidden z-50 py-1"
                   >
                     {nichesDropdown.map((item) =>
                       item.href.startsWith("/#") ? (
@@ -171,7 +171,7 @@ export function Navigation() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden border-t border-gray-100 bg-white pb-4"
+            className="md:hidden border-t border-white/40 pb-4"
           >
             <button
               onClick={() => setMobileNichesOpen((v) => !v)}

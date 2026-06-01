@@ -49,7 +49,7 @@ const niches = [
 
 export function NichesSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white" id="niches">
+    <section className="py-20 sm:py-28" id="niches">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -83,14 +83,14 @@ export function NichesSection() {
                 {isExternal ? (
                   <div
                     onClick={() => scrollToId("quiz")}
-                    className={`group cursor-pointer ${niche.bg} border border-transparent hover:border-gray-200 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-md transition-all duration-300`}
+                    className="group cursor-pointer glass glass-hover rounded-3xl p-7 flex flex-col gap-5 transition-all duration-300"
                   >
                     <NicheCard niche={niche} />
                   </div>
                 ) : (
                   <Link
                     to={niche.href}
-                    className={`group block ${niche.bg} border border-transparent hover:border-gray-200 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-md transition-all duration-300`}
+                    className="group block glass glass-hover rounded-3xl p-7 flex flex-col gap-5 transition-all duration-300"
                   >
                     <NicheCard niche={niche} />
                   </Link>

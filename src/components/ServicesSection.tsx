@@ -50,7 +50,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20 sm:py-28 bg-gray-50" id="services">
+    <section className="py-20 sm:py-28 bg-white/30" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -78,7 +78,7 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="bg-white border border-gray-100 rounded-3xl p-6 flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group"
+              className="glass glass-hover rounded-3xl p-6 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <div className="flex items-start justify-between">
                 <div className="w-11 h-11 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center group-hover:bg-[#392AE7] transition-colors duration-300">

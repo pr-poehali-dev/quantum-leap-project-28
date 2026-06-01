@@ -63,7 +63,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 bg-white" id="hero">
+    <section className="pt-28 pb-16 sm:pt-36 sm:pb-24" id="hero">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -110,7 +110,7 @@ export function HeroSection() {
               </button>
               <Link
                 to="/cases"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold px-7 py-3.5 rounded-2xl border border-gray-200 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 glass glass-hover text-gray-700 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200"
               >
                 Смотреть кейсы
               </Link>
@@ -135,14 +135,14 @@ export function HeroSection() {
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   {stats.map((stat) => (
-                    <div key={stat.value} className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
+                    <div key={stat.value} className="glass-dark rounded-2xl p-4">
                       <div className="font-display text-3xl font-bold mb-1">{stat.value}</div>
                       <div className="text-sm text-white/70">{stat.label}</div>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm overflow-hidden">
+                <div className="glass-dark rounded-2xl p-4 overflow-hidden">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                     <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Свежие клиенты в 1 руки</div>

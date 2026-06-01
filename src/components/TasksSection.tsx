@@ -43,7 +43,7 @@ const tasks = [
 
 export function TasksSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white" id="about">
+    <section className="py-20 sm:py-28" id="about">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -71,7 +71,7 @@ export function TasksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="group bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:border-[#392AE7]/20 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              className="group glass glass-hover rounded-3xl p-6 hover:-translate-y-0.5 transition-all duration-300"
             >
               <span className="text-5xl font-bold font-display text-gray-100 group-hover:text-[#392AE7]/15 transition-colors block mb-4 leading-none">
                 {task.number}

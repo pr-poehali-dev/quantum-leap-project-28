@@ -94,6 +94,72 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply text-foreground font-sans;
+    position: relative;
+    background-color: #f6f7fb;
+  }
+
+  /* Liquid glass: мягкая цветная сцена-подложка для всего сайта */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        40rem 40rem at 12% 0%,
+        hsl(243 78% 54% / 0.16),
+        transparent 60%
+      ),
+      radial-gradient(
+        34rem 34rem at 92% 12%,
+        hsl(265 80% 60% / 0.14),
+        transparent 60%
+      ),
+      radial-gradient(
+        40rem 40rem at 78% 88%,
+        hsl(243 78% 54% / 0.12),
+        transparent 60%
+      ),
+      radial-gradient(
+        30rem 30rem at 8% 92%,
+        hsl(210 90% 60% / 0.12),
+        transparent 60%
+      );
+  }
+}
+
+@layer components {
+  /* Стеклянная карточка */
+  .glass {
+    background: hsl(0 0% 100% / 0.55);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid hsl(0 0% 100% / 0.6);
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.7) inset,
+      0 8px 32px hsl(243 78% 30% / 0.08);
+  }
+
+  .glass-hover {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+  }
+  .glass-hover:hover {
+    background: hsl(0 0% 100% / 0.7);
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.8) inset,
+      0 14px 40px hsl(243 78% 30% / 0.14);
+  }
+
+  /* Стеклянная панель внутри тёмных/цветных блоков */
+  .glass-dark {
+    background: hsl(0 0% 100% / 0.1);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid hsl(0 0% 100% / 0.18);
   }
 }

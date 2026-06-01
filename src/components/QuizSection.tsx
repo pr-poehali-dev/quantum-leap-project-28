@@ -143,7 +143,7 @@ export function QuizSection({ openLegal }: Props) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.4 }}
-            className="bg-card rounded-3xl border border-border shadow-sm overflow-hidden relative"
+            className="glass rounded-3xl overflow-hidden relative"
           >
             <div className="bg-primary px-6 sm:px-8 pt-7 pb-5">
               <div className="flex items-center gap-2 mb-2">

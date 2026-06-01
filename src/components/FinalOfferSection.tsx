@@ -11,7 +11,7 @@ const guarantees = [
 
 export function FinalOfferSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white" id="offer">
+    <section className="py-20 sm:py-28" id="offer">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}

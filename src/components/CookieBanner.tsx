@@ -51,7 +51,7 @@ export function CookieBanner() {
           transition={{ duration: 0.35 }}
           role="dialog"
           aria-label="Настройки cookie"
-          className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[100] bg-white border border-gray-200 rounded-2xl shadow-2xl shadow-black/10 p-5"
+          className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[100] glass rounded-2xl shadow-2xl p-5"
         >
           <div className="flex items-start justify-between gap-3 mb-3">
             <p className="text-sm font-semibold text-gray-900">Мы используем cookies 🍪</p>

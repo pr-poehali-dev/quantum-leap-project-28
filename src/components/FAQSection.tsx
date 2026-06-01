@@ -33,7 +33,7 @@ export function FAQSection() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section className="py-20 sm:py-28 bg-gray-50" id="faq">
+    <section className="py-20 sm:py-28 bg-white/30" id="faq">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <motion.div
@@ -62,7 +62,7 @@ export function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-                className="bg-white border border-gray-100 rounded-3xl overflow-hidden"
+                className="glass rounded-3xl overflow-hidden"
               >
                 <button
                   onClick={() => setOpen(open === i ? null : i)}

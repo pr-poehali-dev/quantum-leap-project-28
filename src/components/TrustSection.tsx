@@ -33,7 +33,7 @@ const advantages = [
 
 export function TrustSection() {
   return (
-    <section className="py-20 sm:py-28 bg-gray-50" id="trust">
+    <section className="py-20 sm:py-28 bg-white/30" id="trust">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -61,7 +61,7 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="bg-white border border-gray-100 rounded-3xl p-6 text-center"
+              className="glass rounded-3xl p-6 text-center"
             >
               <div className="w-10 h-10 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center mx-auto mb-4">
                 <Icon name={s.icon} className="w-5 h-5 text-[#392AE7]" />
@@ -81,7 +81,7 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="bg-white border border-gray-100 rounded-3xl p-6 flex gap-4 items-start"
+              className="glass rounded-3xl p-6 flex gap-4 items-start"
             >
               <div className="w-10 h-10 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center shrink-0">
                 <Icon name={adv.icon} className="w-5 h-5 text-[#392AE7]" />

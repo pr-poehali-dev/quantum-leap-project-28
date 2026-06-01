@@ -55,7 +55,7 @@ export function CaseStudiesSection({ preview = false }: Props) {
   const cases = preview ? allCases.slice(0, 3) : allCases
 
   return (
-    <section className="py-20 sm:py-28 bg-gray-50" id="cases">
+    <section className="py-20 sm:py-28 bg-white/30" id="cases">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -93,7 +93,7 @@ export function CaseStudiesSection({ preview = false }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="bg-white border border-gray-100 rounded-3xl p-6 flex flex-col gap-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              className="glass glass-hover rounded-3xl p-6 flex flex-col gap-5 hover:-translate-y-0.5 transition-all duration-300"
             >
               <div className="flex items-center justify-between">
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full ${c.nicheColor}`}>

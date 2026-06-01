@@ -36,7 +36,7 @@ const proof = [
 
 export function LeadsExplainerSection() {
   return (
-    <section className="py-16 sm:py-20 bg-gray-50">
+    <section className="py-16 sm:py-20 bg-white/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -64,7 +64,7 @@ export function LeadsExplainerSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.07, 0.2) }}
-              className="bg-white rounded-2xl p-6 border border-gray-100 relative"
+              className="glass rounded-2xl p-6 relative"
             >
               <div className="text-3xl mb-4">{step.icon}</div>
               <div className="text-xs font-bold text-gray-300 mb-1">{step.num}</div>

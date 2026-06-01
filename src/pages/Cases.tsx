@@ -47,10 +47,10 @@ export default function Cases() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navigation />
 
-      <section className="pt-28 pb-16 sm:pt-36 sm:pb-20 bg-gray-50">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-20 bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -89,7 +89,7 @@ export default function Cases() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.07 }}
-                className="bg-white border border-gray-100 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-lg hover:shadow-gray-100 hover:-translate-y-0.5 transition-all duration-300"
+                className="glass glass-hover rounded-3xl p-7 flex flex-col gap-5 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex items-center justify-between">
                   <span className={`text-xs font-semibold px-3 py-1 rounded-full ${c.nicheColor}`}>
@@ -119,7 +119,7 @@ export default function Cases() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -132,7 +132,7 @@ export default function Cases() {
 
           <div className="grid md:grid-cols-3 gap-4 mb-10 max-w-3xl mx-auto">
             {stages.map((s) => (
-              <div key={s.title} className="bg-white border border-gray-100 rounded-3xl p-6 text-center">
+              <div key={s.title} className="glass rounded-3xl p-6 text-center">
                 <div className="text-3xl mb-3">{s.icon}</div>
                 <div className="font-semibold text-gray-900">{s.title}</div>
               </div>
@@ -158,7 +158,7 @@ export default function Cases() {
 
 function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-gray-50 py-10">
+    <footer className="border-t border-gray-100 bg-white/30 py-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
         <Link to="/" className="font-display font-bold text-gray-900 hover:text-[#392AE7] transition-colors">
           Вам Лям!

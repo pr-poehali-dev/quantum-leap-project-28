@@ -43,7 +43,7 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white" id="how">
+    <section className="py-20 sm:py-28" id="how">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -71,10 +71,10 @@ export function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className={`flex gap-5 items-center p-5 rounded-3xl border transition-all duration-300 ${
+              className={`flex gap-5 items-center p-5 rounded-3xl transition-all duration-300 ${
                 step.highlight
-                  ? "bg-[#392AE7] border-[#392AE7] text-white shadow-sm"
-                  : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm"
+                  ? "bg-[#392AE7] border border-[#392AE7] text-white shadow-sm"
+                  : "glass glass-hover"
               }`}
             >
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
