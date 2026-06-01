@@ -63,7 +63,7 @@ export function Navigation() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || menuOpen
           ? "bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm"
           : "bg-transparent"
       }`}
@@ -153,7 +153,7 @@ export function Navigation() {
                   document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })
                 }
               }}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm shadow-[#392AE7]/20"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors duration-200"
             >
               Получить клиентов
             </button>

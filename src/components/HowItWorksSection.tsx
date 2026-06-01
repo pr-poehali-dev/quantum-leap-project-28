@@ -46,10 +46,10 @@ export function HowItWorksSection() {
     <section className="py-20 sm:py-28 bg-white" id="how">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -67,13 +67,13 @@ export function HowItWorksSection() {
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
+              transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
               className={`flex gap-5 items-center p-5 rounded-3xl border transition-all duration-300 ${
                 step.highlight
-                  ? "bg-[#392AE7] border-[#392AE7] text-white shadow-lg shadow-[#392AE7]/20"
+                  ? "bg-[#392AE7] border-[#392AE7] text-white shadow-sm"
                   : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm"
               }`}
             >

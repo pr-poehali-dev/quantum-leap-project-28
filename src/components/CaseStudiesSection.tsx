@@ -58,10 +58,10 @@ export function CaseStudiesSection({ preview = false }: Props) {
     <section className="py-20 sm:py-28 bg-gray-50" id="cases">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14"
         >
           <div>
@@ -89,11 +89,11 @@ export function CaseStudiesSection({ preview = false }: Props) {
           {cases.map((c, i) => (
             <motion.div
               key={c.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white border border-gray-100 rounded-3xl p-6 flex flex-col gap-5 hover:shadow-lg hover:shadow-gray-100 hover:-translate-y-0.5 transition-all duration-300"
+              transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
+              className="bg-white border border-gray-100 rounded-3xl p-6 flex flex-col gap-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               <div className="flex items-center justify-between">
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full ${c.nicheColor}`}>
@@ -126,11 +126,12 @@ export function CaseStudiesSection({ preview = false }: Props) {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
             className="mt-10 text-center"
           >
             <Link
               to="/cases"
-              className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/20"
+              className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200 shadow-sm"
             >
               Смотреть все кейсы
               <ArrowRight className="w-4 h-4" />
