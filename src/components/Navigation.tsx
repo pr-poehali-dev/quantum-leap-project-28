@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 import Icon from "@/components/ui/icon"
+import { scrollToId } from "@/lib/scrollTo"
 
 const navLinks = [
   { label: "О нас", href: "/#trust" },
@@ -52,7 +53,7 @@ export function Navigation() {
       if (location.pathname !== "/") {
         window.location.href = href
       } else {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+        scrollToId(id)
       }
     }
   }
@@ -150,7 +151,7 @@ export function Navigation() {
                 if (location.pathname !== "/") {
                   window.location.href = "/#quiz"
                 } else {
-                  document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })
+                  scrollToId("quiz")
                 }
               }}
               className="hidden sm:inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors duration-200"

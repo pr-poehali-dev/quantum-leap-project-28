@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Icon from "@/components/ui/icon"
+import { scrollToId } from "@/lib/scrollTo"
 
 const services = [
   {
@@ -109,7 +110,7 @@ export function ServicesSection() {
           className="mt-10 text-center"
         >
           <button
-            onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => scrollToId("quiz")}
             className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-sm"
           >
             Обсудить проект

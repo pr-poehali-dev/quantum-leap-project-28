@@ -2,6 +2,7 @@ import { ArrowRight, TrendingUp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { scrollToId } from "@/lib/scrollTo"
 
 const stats = [
   { value: "С 2018", label: "года генерируем клиентов" },
@@ -101,7 +102,7 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <button
-                onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToId("quiz")}
                 className="inline-flex items-center justify-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-7 py-3.5 rounded-2xl transition-colors duration-200"
               >
                 Получить клиентов

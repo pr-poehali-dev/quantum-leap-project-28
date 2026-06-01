@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Navigation } from "@/components/Navigation"
 import { allCases } from "@/components/CaseStudiesSection"
 import { motion } from "framer-motion"
@@ -43,6 +44,8 @@ const stages = [
 ]
 
 export default function Cases() {
+  useEffect(() => { window.scrollTo(0, 0) }, [])
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />

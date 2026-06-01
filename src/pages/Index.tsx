@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { scrollToId } from "@/lib/scrollTo"
 import { Navigation } from "@/components/Navigation"
 import { HeroSection } from "@/components/HeroSection"
 import { QuizSection } from "@/components/QuizSection"
@@ -8,6 +9,7 @@ import { NichesSection } from "@/components/NichesSection"
 import { CaseStudiesSection } from "@/components/CaseStudiesSection"
 import { TestimonialsSection } from "@/components/TestimonialsSection"
 import { ServicesSection } from "@/components/ServicesSection"
+import { LeadsExplainerSection } from "@/components/LeadsExplainerSection"
 import { HowItWorksSection } from "@/components/HowItWorksSection"
 import { FAQSection } from "@/components/FAQSection"
 import { FinalOfferSection } from "@/components/FinalOfferSection"
@@ -20,23 +22,11 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Баннер: сайт в разработке */}
-      <div className="bg-amber-50 border-b border-amber-200 text-amber-900 text-xs sm:text-sm text-center py-2 px-4">
-        🚧 Сайт находится в разработке. Нашли баг? Напишите{" "}
-        <a
-          href="https://t.me/vamlyam"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold underline underline-offset-2 hover:text-amber-700 transition-colors"
-        >
-          Константину в Telegram
-        </a>
-      </div>
-
       <Navigation />
 
       <main>
         <HeroSection />
+        <LeadsExplainerSection />
         <QuizSection openLegal={() => setLegalDoc("privacy")} />
         <TasksSection />
         <TrustSection />
@@ -93,7 +83,7 @@ export default function Index() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => scrollToId("quiz")}
                     className="hover:text-gray-700 transition-colors text-left"
                   >
                     Другие ниши
@@ -108,7 +98,7 @@ export default function Index() {
               <ul className="space-y-2.5 text-sm text-gray-400">
                 <li>
                   <button
-                    onClick={() => document.getElementById("trust")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => scrollToId("trust")}
                     className="hover:text-gray-700 transition-colors"
                   >
                     О нас
@@ -121,7 +111,7 @@ export default function Index() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => scrollToId("services")}
                     className="hover:text-gray-700 transition-colors"
                   >
                     Услуги
@@ -129,7 +119,7 @@ export default function Index() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => scrollToId("faq")}
                     className="hover:text-gray-700 transition-colors"
                   >
                     FAQ

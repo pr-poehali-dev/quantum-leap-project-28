@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { motion } from "framer-motion"
+import { scrollToId } from "@/lib/scrollTo"
 
 const guarantees = [
   "Первые лиды за 24 часа",
@@ -42,7 +43,7 @@ export function FinalOfferSection() {
 
             <div className="flex flex-col sm:flex-row justify-center gap-3">
               <button
-                onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => scrollToId("quiz")}
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-[#392AE7] font-bold text-base px-8 py-4 rounded-2xl transition-all duration-200 shadow-sm"
               >
                 Получить расчёт бесплатно

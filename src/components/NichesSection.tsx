@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import Icon from "@/components/ui/icon"
+import { scrollToId } from "@/lib/scrollTo"
 
 const niches = [
   {
@@ -10,8 +11,8 @@ const niches = [
     description: "Лиды на покупку новостроек, вторички, коммерческой недвижимости и аренду. Работаем с агентствами, застройщиками и частными риелторами.",
     metrics: ["от 500 ₽ / лид", "конверсия 8–14%", "запуск за 1 день"],
     href: "/niches/nedvizhimost",
-    bg: "bg-blue-50",
-    accent: "text-blue-600",
+    bg: "bg-[#392AE7]/5",
+    accent: "text-[#392AE7]",
     badge: "Топ направление",
   },
   {
@@ -20,8 +21,8 @@ const niches = [
     description: "Привлекаем потенциальных франчайзи для вашего бренда. Квалифицируем по бюджету и готовности — передаём только реальных покупателей.",
     metrics: ["от 2 500 ₽ / лид", "конверсия 5–10%", "запуск за 2 дня"],
     href: "/niches/franshizy",
-    bg: "bg-amber-50",
-    accent: "text-amber-600",
+    bg: "bg-[#392AE7]/5",
+    accent: "text-[#392AE7]",
     badge: "Высокий чек",
   },
   {
@@ -30,8 +31,8 @@ const niches = [
     description: "Генерируем поток частных инвесторов с капиталом от 1 млн ₽. Инвесторы в бизнес, маркетплейсы, недвижимость, стартапы.",
     metrics: ["от 1 500 ₽ / лид", "только квал. инвесторы", "запуск за 1 день"],
     href: "/niches/investitsii",
-    bg: "bg-violet-50",
-    accent: "text-violet-600",
+    bg: "bg-[#392AE7]/5",
+    accent: "text-[#392AE7]",
     badge: "Растущий рынок",
   },
   {
@@ -40,8 +41,8 @@ const niches = [
     description: "Работаем с B2B-услугами, образованием, медициной, юридическими услугами и другими нишами. Обсудим ваш запрос индивидуально.",
     metrics: ["индивидуальный расчёт", "любая ниша", "быстрый старт"],
     href: "/#quiz",
-    bg: "bg-gray-50",
-    accent: "text-gray-600",
+    bg: "bg-[#392AE7]/5",
+    accent: "text-[#392AE7]",
     badge: "Под запрос",
   },
 ]
@@ -81,7 +82,7 @@ export function NichesSection() {
               >
                 {isExternal ? (
                   <div
-                    onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={() => scrollToId("quiz")}
                     className={`group cursor-pointer ${niche.bg} border border-transparent hover:border-gray-200 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-md transition-all duration-300`}
                   >
                     <NicheCard niche={niche} />
