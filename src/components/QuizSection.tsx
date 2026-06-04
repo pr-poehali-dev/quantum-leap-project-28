@@ -99,14 +99,11 @@ const forecastMap: Record<string, Record<string, { leads: string; price: string;
   },
 }
 
-type Props = { openLegal?: () => void }
-
-export function QuizSection({ openLegal }: Props) {
+export function QuizSection() {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
-  const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [direction, setDirection] = useState(1)
 
@@ -126,7 +123,7 @@ export function QuizSection({ openLegal }: Props) {
   }
 
   function handleSubmit() {
-    if (phone.length < 6 || !consent) return
+    if (phone.length < 6) return
     setSubmitted(true)
   }
 
@@ -135,17 +132,16 @@ export function QuizSection({ openLegal }: Props) {
   const forecast = forecastMap[niche]?.[volume] ?? { leads: "30–50", price: "1 500 ₽", conversion: "до 8%" }
 
   return (
-    <section className="pt-4 pb-16 sm:pt-8 sm:pb-20 relative" id="quiz">
+    <section className="py-0 relative" id="quiz">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.4 }}
-            className="glass rounded-3xl overflow-hidden relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-card rounded-3xl border border-border shadow-xl shadow-primary/5 overflow-hidden -mt-12 relative z-10"
           >
-            <div className="bg-primary px-6 sm:px-8 pt-7 pb-5">
+            <div className="bg-primary px-8 pt-7 pb-5">
               <div className="flex items-center gap-2 mb-2">
                 <Sparkles className="w-4 h-4 text-primary-foreground/80" />
                 <span className="text-primary-foreground/80 text-sm font-medium">Бесплатный расчёт прогноза</span>
@@ -166,7 +162,7 @@ export function QuizSection({ openLegal }: Props) {
               </div>
             </div>
 
-            <div className="p-5 sm:p-8">
+            <div className="p-8">
               {!submitted ? (
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
@@ -183,7 +179,7 @@ export function QuizSection({ openLegal }: Props) {
                     )}
 
                     {step.type === "choice" && step.options && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-2 gap-3">
                         {step.options.map((opt) => {
                           const selected = answers[step.id] === opt.value
                           return (
@@ -213,17 +209,17 @@ export function QuizSection({ openLegal }: Props) {
                       <div className="space-y-5">
                         <div className="bg-secondary/50 rounded-2xl p-5 border border-border">
                           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Ваш предварительный прогноз</p>
-                          <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                          <div className="grid grid-cols-3 gap-4">
                             <div>
-                              <p className="font-display text-xl sm:text-2xl font-bold text-primary">{forecast.leads}</p>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.leads}</p>
                               <p className="text-xs text-muted-foreground mt-0.5">лидов / мес.</p>
                             </div>
                             <div>
-                              <p className="font-display text-xl sm:text-2xl font-bold text-primary">{forecast.price}</p>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.price}</p>
                               <p className="text-xs text-muted-foreground mt-0.5">за лид</p>
                             </div>
                             <div>
-                              <p className="font-display text-xl sm:text-2xl font-bold text-primary">{forecast.conversion}</p>
+                              <p className="font-display text-2xl font-bold text-primary">{forecast.conversion}</p>
                               <p className="text-xs text-muted-foreground mt-0.5">конверсия</p>
                             </div>
                           </div>
@@ -255,36 +251,16 @@ export function QuizSection({ openLegal }: Props) {
                           </div>
                         </div>
 
-                        <label className="flex items-start gap-2.5 cursor-pointer group">
-                          <input
-                            type="checkbox"
-                            checked={consent}
-                            onChange={(e) => setConsent(e.target.checked)}
-                            className="mt-0.5 w-4 h-4 accent-[#392AE7] cursor-pointer shrink-0"
-                            aria-required="true"
-                          />
-                          <span className="text-xs text-muted-foreground leading-relaxed">
-                            Я согласен(а) на обработку персональных данных в соответствии с{" "}
-                            <button
-                              type="button"
-                              onClick={openLegal}
-                              className="text-[#392AE7] hover:underline focus:outline-none"
-                            >
-                              Политикой конфиденциальности
-                            </button>
-                          </span>
-                        </label>
-
                         <Button
                           onClick={handleSubmit}
                           className="w-full h-12 text-base font-semibold"
-                          disabled={phone.length < 6 || !consent}
+                          disabled={phone.length < 6}
                         >
                           Получить прогноз и консультацию
                           <ChevronRight className="w-4 h-4 ml-1" />
                         </Button>
                         <p className="text-xs text-center text-muted-foreground">
-                          Позвоним в течение 15 минут. Без спама и навязчивых рассылок.
+                          Позвоним в течение 15 минут. Без спама. Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
                         </p>
                       </div>
                     )}

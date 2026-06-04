@@ -1,7 +1,6 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Icon from "@/components/ui/icon"
-import { scrollToId } from "@/lib/scrollTo"
 
 const services = [
   {
@@ -50,13 +49,13 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white/30" id="services">
+    <section className="py-20 sm:py-28 bg-gray-50" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -74,11 +73,11 @@ export function ServicesSection() {
           {services.map((svc, i) => (
             <motion.div
               key={svc.step}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="glass glass-hover rounded-3xl p-6 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-300 group"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="bg-white border border-gray-100 rounded-3xl p-6 flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <div className="flex items-start justify-between">
                 <div className="w-11 h-11 rounded-2xl bg-[#392AE7]/8 flex items-center justify-center group-hover:bg-[#392AE7] transition-colors duration-300">
@@ -103,15 +102,15 @@ export function ServicesSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           className="mt-10 text-center"
         >
           <button
-            onClick={() => scrollToId("quiz")}
-            className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-sm"
+            onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/20"
           >
             Обсудить проект
             <ArrowRight className="w-4 h-4" />

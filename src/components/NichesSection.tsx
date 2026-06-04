@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import Icon from "@/components/ui/icon"
-import { scrollToId } from "@/lib/scrollTo"
 
 const niches = [
   {
@@ -11,8 +10,8 @@ const niches = [
     description: "Лиды на покупку новостроек, вторички, коммерческой недвижимости и аренду. Работаем с агентствами, застройщиками и частными риелторами.",
     metrics: ["от 500 ₽ / лид", "конверсия 8–14%", "запуск за 1 день"],
     href: "/niches/nedvizhimost",
-    bg: "bg-[#392AE7]/5",
-    accent: "text-[#392AE7]",
+    bg: "bg-blue-50",
+    accent: "text-blue-600",
     badge: "Топ направление",
   },
   {
@@ -21,8 +20,8 @@ const niches = [
     description: "Привлекаем потенциальных франчайзи для вашего бренда. Квалифицируем по бюджету и готовности — передаём только реальных покупателей.",
     metrics: ["от 2 500 ₽ / лид", "конверсия 5–10%", "запуск за 2 дня"],
     href: "/niches/franshizy",
-    bg: "bg-[#392AE7]/5",
-    accent: "text-[#392AE7]",
+    bg: "bg-amber-50",
+    accent: "text-amber-600",
     badge: "Высокий чек",
   },
   {
@@ -31,8 +30,8 @@ const niches = [
     description: "Генерируем поток частных инвесторов с капиталом от 1 млн ₽. Инвесторы в бизнес, маркетплейсы, недвижимость, стартапы.",
     metrics: ["от 1 500 ₽ / лид", "только квал. инвесторы", "запуск за 1 день"],
     href: "/niches/investitsii",
-    bg: "bg-[#392AE7]/5",
-    accent: "text-[#392AE7]",
+    bg: "bg-violet-50",
+    accent: "text-violet-600",
     badge: "Растущий рынок",
   },
   {
@@ -41,21 +40,21 @@ const niches = [
     description: "Работаем с B2B-услугами, образованием, медициной, юридическими услугами и другими нишами. Обсудим ваш запрос индивидуально.",
     metrics: ["индивидуальный расчёт", "любая ниша", "быстрый старт"],
     href: "/#quiz",
-    bg: "bg-[#392AE7]/5",
-    accent: "text-[#392AE7]",
+    bg: "bg-gray-50",
+    accent: "text-gray-600",
     badge: "Под запрос",
   },
 ]
 
 export function NichesSection() {
   return (
-    <section className="py-20 sm:py-28" id="niches">
+    <section className="py-20 sm:py-28 bg-white" id="niches">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -75,22 +74,22 @@ export function NichesSection() {
             return (
               <motion.div
                 key={niche.title}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
               >
                 {isExternal ? (
                   <div
-                    onClick={() => scrollToId("quiz")}
-                    className="group cursor-pointer glass glass-hover rounded-3xl p-7 flex flex-col gap-5 transition-all duration-300"
+                    onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+                    className={`group cursor-pointer ${niche.bg} border border-transparent hover:border-gray-200 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-md transition-all duration-300`}
                   >
                     <NicheCard niche={niche} />
                   </div>
                 ) : (
                   <Link
                     to={niche.href}
-                    className="group block glass glass-hover rounded-3xl p-7 flex flex-col gap-5 transition-all duration-300"
+                    className={`group block ${niche.bg} border border-transparent hover:border-gray-200 rounded-3xl p-7 flex flex-col gap-5 hover:shadow-md transition-all duration-300`}
                   >
                     <NicheCard niche={niche} />
                   </Link>

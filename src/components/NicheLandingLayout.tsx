@@ -3,7 +3,6 @@ import { motion } from "framer-motion"
 import { ArrowRight, CheckCircle2, Star } from "lucide-react"
 import Icon from "@/components/ui/icon"
 import { Link } from "react-router-dom"
-import { scrollToId } from "@/lib/scrollTo"
 
 interface Metric {
   value: string
@@ -81,7 +80,7 @@ export function NicheLandingLayout({
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => scrollToId("quiz-niche")}
+                  onClick={() => document.querySelector("#quiz-niche")?.scrollIntoView({ behavior: "smooth" })}
                   className="inline-flex items-center justify-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-bold px-7 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/25"
                 >
                   Получить клиентов

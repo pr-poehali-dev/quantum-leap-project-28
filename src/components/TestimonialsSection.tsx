@@ -51,7 +51,7 @@ function Stars() {
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 sm:py-28" id="testimonials">
+    <section className="py-20 sm:py-28 bg-white" id="testimonials">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -69,7 +69,7 @@ export function TestimonialsSection() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="glass rounded-3xl p-7 flex flex-col gap-5"
+              className="bg-gray-50 border border-gray-100 rounded-3xl p-7 flex flex-col gap-5"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">

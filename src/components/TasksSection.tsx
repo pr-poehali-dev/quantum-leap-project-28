@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { scrollToId } from "@/lib/scrollTo"
 
 const tasks = [
   {
@@ -43,13 +42,13 @@ const tasks = [
 
 export function TasksSection() {
   return (
-    <section className="py-20 sm:py-28" id="about">
+    <section className="py-20 sm:py-28 bg-white" id="about">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           className="max-w-2xl mb-14"
         >
           <div className="inline-flex items-center gap-2 bg-[#392AE7]/8 text-[#392AE7] text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
@@ -67,11 +66,11 @@ export function TasksSection() {
           {tasks.map((task, i) => (
             <motion.div
               key={task.number}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.2) }}
-              className="group glass glass-hover rounded-3xl p-6 hover:-translate-y-0.5 transition-all duration-300"
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="group bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:border-[#392AE7]/20 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               <span className="text-5xl font-bold font-display text-gray-100 group-hover:text-[#392AE7]/15 transition-colors block mb-4 leading-none">
                 {task.number}
@@ -89,15 +88,15 @@ export function TasksSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           className="mt-10 text-center"
         >
           <button
-            onClick={() => scrollToId("quiz")}
-            className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-sm"
+            onClick={() => document.querySelector("#quiz")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center gap-2 bg-[#392AE7] hover:bg-[#2d21c0] text-white font-semibold px-8 py-3.5 rounded-2xl transition-all duration-200 shadow-lg shadow-[#392AE7]/20"
           >
             Обсудить мою задачу
             <ArrowRight className="w-4 h-4" />
