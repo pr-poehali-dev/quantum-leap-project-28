@@ -51,7 +51,7 @@ export function HeroSection() {
               Агентство по генерации клиентов
             </div>
 
-            <h1 className="font-display sm:text-5xl lg:text-6xl font-black text-slate-800 px-0 mx-0 my-0 py-0 text-5xl" style={{ lineHeight: 1.05 }}>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 px-0 mx-0 my-0 py-0" style={{ lineHeight: 1.02 }}>
               Генерируем горячий поток{" "}
               <span className="inline">
                 <AnimatePresence mode="wait">
@@ -78,7 +78,7 @@ export function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-lg text-gray-500 leading-relaxed max-w-lg my-[13px]">Получайте системный и стабильный поток клиентов с гарантией качества и заменой не целевых*</p>
+            <p className="text-xl text-gray-600 font-medium leading-relaxed max-w-lg my-[13px]">Получайте системный и стабильный поток клиентов с гарантией качества и заменой не целевых*</p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <button
